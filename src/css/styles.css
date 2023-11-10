@@ -21,7 +21,7 @@ body {
   text-align: center; /* Center text horizontally */
 }
 
-/* Larger input fields */
+
 .form-group input[type="text"],
 .form-group input[type="password"] {
   width: 100%;
@@ -34,9 +34,9 @@ body {
 
 
 .form-group button[type="submit"] {
-  width: 100%;
+  width: 113%;
   padding: 12px; /* Increased padding to make the button larger */
-  background-color: #3498db;
+  background-color: #445570;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -45,37 +45,15 @@ body {
 }
 
 
-#dashboard {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f0f0f0;
-  padding: 20px;
-}
-
-header {
-  text-align: center;
-  background-color: #3498db;
-  color: #ffffff;
-  padding: 10px;
-  border-radius: 10px;
-  width: 100%;
-}
-
 #user-name {
   font-weight: bold;
 }
 
 #total-cost {
   margin-top: 10px;
+  font-weight: bold;
 }
 
-aside {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
 
 #trip-planner-form {
   background-color: #ffffff;
@@ -114,3 +92,45 @@ h2 {
   text-align: center;
   width: 100%;
 }
+
+
+.header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+
+#dashboard {
+  display: none;
+  background-color: #f0f0f0d7;
+  padding: 20px;
+  border-radius: 10px;
+  color: #07162e
+}
+
+header {
+  display: flex;
+  background-color: #ffffffbf;
+  color: #445570;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.header-content {
+  flex: 1; /* Take up remaining space in the header */
+}
+
+.trip-planner {
+  flex-shrink: 0; /* Prevent the form from growing and take up left space */
+  width: 30%; /* Set the width for the form section */
+  padding: 20px;
+  background-color: #ffffffac;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+

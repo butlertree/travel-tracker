@@ -30,6 +30,7 @@ import {
     userNameInput,
     passwordInput,
     loginButton,
+    updateUserName,
     loginForm,
     loginSection,
     dashboardSection,
@@ -69,6 +70,9 @@ loginForm.addEventListener('submit', (e) => {
             allDestinations // Pass the variable directly
           );
   
+   // Update the user name in the dashboard with the fetched currentTraveler's name
+            updateUserName(currentTravelerData.traveler);
+
           // Use the currentTravelerData object as needed
           console.log(currentTravelerData);
         });

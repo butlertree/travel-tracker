@@ -4,13 +4,15 @@ const username = document.querySelector('#username')
 const password = document.querySelector('#password')
 const loginButton = document.querySelector('#submitLogin')
 const loginForm = document.querySelector('#login-form');
-// const loginSection = document.querySelector('#login-section')
-// const dashboardSection = document.querySelector('#dashboard')
-
+const travelerName = document.querySelector('#traveler')
 const loginSection = document.getElementById('login-section');
 const dashboardSection = document.getElementById('dashboard');
 ///DOM UPDATES TO HERE
 
+const updateUserName = (traveler) => {
+    travelerName.innerHTML ='';
+    travelerName.innerHTML += `<h1>${traveler.name}</h1></p>`;
+  }
 
 
 
@@ -21,5 +23,6 @@ export {
     loginButton,
     loginSection,
     dashboardSection,
-    loginForm
+    loginForm,
+    updateUserName
   }
