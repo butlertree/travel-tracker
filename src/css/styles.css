@@ -1,8 +1,8 @@
-
+/* 
 body, h1, h2, p {
   margin: 0;
   padding: 0;
-}
+} */
 
 
 body {
@@ -21,10 +21,9 @@ body {
 }
 
 #login-form {
-  background-color: #ffffff;
+  background-color: #ffffffa6;
   padding: 70px; /* Increased padding to make the box 75% larger */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   text-align: center; /* Center text horizontally */
 }
 
@@ -96,9 +95,6 @@ aside {
   margin: 10px 0;
 }
 
-form label {
-  font-weight: bold;
-}
 
 .form-group input[type="date"],
 .form-group input[type="number"] {
