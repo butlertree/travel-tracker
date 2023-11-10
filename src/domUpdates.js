@@ -1,58 +1,25 @@
 //query selectors go here
 
+const username = document.querySelector('#username')
+const password = document.querySelector('#password')
+const loginButton = document.querySelector('#submitLogin')
+const loginForm = document.querySelector('#login-form');
+// const loginSection = document.querySelector('#login-section')
+// const dashboardSection = document.querySelector('#dashboard')
 
-
-
-//use something like this for the login page
-// const toggleAdmin = () => {
-
-//     userPage.classList.toggle('hidden');
-//     adminPage.classList.toggle('hidden');
-//   }
-
-// const toggleAdminData = () => {
-//     if(userAdminButton.disabled) {
-//       userAdminButton.style.backgroundColor='#003249';
-//       userAdminButton.style.color='white';
-//       overallAdminButton.style.backgroundColor='white';
-//       overallAdminButton.style.color='black';
-//       userAdminButton.disabled=!userAdminButton.disabled;
-//       overallAdminButton.disabled=!overallAdminButton.disabled;
-//     }
-//     else if(overallAdminButton.disabled) {
-//       overallAdminButton.style.backgroundColor='#003249';
-//       overallAdminButton.style.color='white';
-//       userAdminButton.style.backgroundColor='white';
-//       userAdminButton.style.color='black';
-//       overallAdminButton.disabled=!overallAdminButton.disabled;
-//       userAdminButton.disabled=!userAdminButton.disabled;
-//     }
-//     userDataWrapper.classList.toggle('hidden');
-//     overallDataWrapper.classList.toggle('hidden');
-//   }
-  
-
+const loginSection = document.getElementById('login-section');
+const dashboardSection = document.getElementById('dashboard');
 ///DOM UPDATES TO HERE
 
 
 
 
-
-
-
-
-
-
-
-
-
 ///EXPORTS GO HERE LIKE THIS TEMPLATE
-// export {
-//     toggleButton,
-//     userAdminButton,
-//     overallAdminButton,
-//     toggleAdmin,
-//     toggleAdminData,
-//     updateUserName,
-//     waterDayUpdate,
-//   }
+export {
+    username,
+    password,
+    loginButton,
+    loginSection,
+    dashboardSection,
+    loginForm
+  }
