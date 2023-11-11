@@ -63,8 +63,55 @@ function getImageURLsOfPendingTrips(currentTravelerData) {
   }
   
   
-//   const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
-//   console.log(pendingTripImageURLs);
+ 
+  // Function to get image URLs of past trips that are not pending
+function getImageURLsOfPastTrips(currentTravelerData) {
+    // Check if currentTravelerData is valid and has trips
+    if (currentTravelerData && currentTravelerData.trips) {
+      // Filter trips to get only past trips that are not pending
+      const pastTrips = currentTravelerData.trips.filter((trip) => {
+        return trip.status !== 'pending' && new Date(trip.date) < new Date(); // Check if the trip is in the past
+      });
+  
+      // Get destination IDs of past trips
+      const pastDestinationIDs = pastTrips.map((trip) => trip.destinationID);
+  
+      // Filter destinations to get only those matching past destination IDs
+      const matchingDestinations = currentTravelerData.destinations.filter((destination) =>
+        pastDestinationIDs.includes(destination.id)
+      );
+  
+      // Get image URLs from the matching destinations
+      const imageURLsOfPastTrips = matchingDestinations.map((destination) => destination.image);
+  
+      return imageURLsOfPastTrips;
+    } else {
+      // If currentTravelerData is not valid or has no trips, return an empty array
+      return [];
+    }
+  }
+  
+
+// Function to get future trips that are not pending
+function getImageURLsOfFutureTrips(currentTravelerData) {
+    // Check if currentTravelerData is valid and has trips
+    if (currentTravelerData && currentTravelerData.trips) {
+      // Filter trips to get only future trips that are not pending
+      const futureTrips = currentTravelerData.trips.filter((trip) => {
+        return trip.status !== 'pending' && new Date(trip.date) > new Date(); // Check if the trip is in the future
+      });
+  
+      // Get destination IDs of future trips
+      const futureTripDestinationIDs = futureTrips.map((trip) => trip.destinationID);
+  
+      return futureTripDestinationIDs;
+    } else {
+      // If currentTravelerData is not valid or has no trips, return an empty array
+      return [];
+    }
+  }
+  
+
 
 
 
@@ -73,11 +120,17 @@ function getImageURLsOfPendingTrips(currentTravelerData) {
 // EXPORT EVERYTHING LIKE THIS
 module.exports = {
     addDataToCurrentTraveler,
-    getImageURLsOfPendingTrips
+    getImageURLsOfPendingTrips,
+    getImageURLsOfPastTrips,
+    getImageURLsOfFutureTrips
   };
 
 
  
+
+
+
+
 //   // Function to show the login and hide the dashboard
 //   function showLogin() {
 //     loginSection.style.display = 'block';
