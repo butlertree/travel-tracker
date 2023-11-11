@@ -34,10 +34,8 @@
   }
  
 
-  ///////////////image urls///////////////////
+  ///////////////PENDING trips to the DOM///////////////////
 
-
-// Function to get image URLs of pending trips
 function getImageURLsOfPendingTrips(currentTravelerData) {
     // Check if currentTravelerData is valid and has trips
     if (currentTravelerData && currentTravelerData.trips) {
@@ -52,10 +50,13 @@ function getImageURLsOfPendingTrips(currentTravelerData) {
         pendingDestinationIDs.includes(destination.id)
       );
   
-      // Get image URLs from the matching destinations
-      const imageURLsOfPendingTrips = matchingDestinations.map((destination) => destination.image);
+      // Create an array of objects with image URL and destination name
+      const imageURLsAndDestinationsOfPendingTrips = matchingDestinations.map((destination) => ({
+        image: destination.image,
+        destination: destination.destination,
+      }));
   
-      return imageURLsOfPendingTrips;
+      return imageURLsAndDestinationsOfPendingTrips;
     } else {
       // If currentTravelerData is not valid or has no trips, return an empty array
       return [];
@@ -63,8 +64,7 @@ function getImageURLsOfPendingTrips(currentTravelerData) {
   }
   
   
- 
-  // Function to get image URLs of past trips that are not pending
+ ///////////////PAST trips to the DOM///////////////////
 function getImageURLsOfPastTrips(currentTravelerData) {
     // Check if currentTravelerData is valid and has trips
     if (currentTravelerData && currentTravelerData.trips) {
@@ -73,18 +73,25 @@ function getImageURLsOfPastTrips(currentTravelerData) {
         return trip.status !== 'pending' && new Date(trip.date) < new Date(); // Check if the trip is in the past
       });
   
-      // Get destination IDs of past trips
-      const pastDestinationIDs = pastTrips.map((trip) => trip.destinationID);
+      // Map past trips to image URLs and destinations
+      const imageURLsAndDestinationsOfPastTrips = pastTrips.map((trip) => {
+        const matchingDestination = currentTravelerData.destinations.find(
+          (destination) => destination.id === trip.destinationID
+        );
   
-      // Filter destinations to get only those matching past destination IDs
-      const matchingDestinations = currentTravelerData.destinations.filter((destination) =>
-        pastDestinationIDs.includes(destination.id)
-      );
+        if (matchingDestination) {
+          return {
+            image: matchingDestination.image,
+            destination: matchingDestination.destination,
+          };
+        }
+
+        return {
+          message: 'No matching destination found',
+        };
+      });
   
-      // Get image URLs from the matching destinations
-      const imageURLsOfPastTrips = matchingDestinations.map((destination) => destination.image);
-  
-      return imageURLsOfPastTrips;
+      return imageURLsAndDestinationsOfPastTrips;
     } else {
       // If currentTravelerData is not valid or has no trips, return an empty array
       return [];
@@ -92,7 +99,8 @@ function getImageURLsOfPastTrips(currentTravelerData) {
   }
   
 
-// Function to get future trips that are not pending
+//  ///////////////FUTURE trips to the DOM///////////////////
+ 
 function getImageURLsOfFutureTrips(currentTravelerData) {
     // Check if currentTravelerData is valid and has trips
     if (currentTravelerData && currentTravelerData.trips) {
@@ -101,15 +109,31 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
         return trip.status !== 'pending' && new Date(trip.date) > new Date(); // Check if the trip is in the future
       });
   
-      // Get destination IDs of future trips
-      const futureTripDestinationIDs = futureTrips.map((trip) => trip.destinationID);
+      // Map future trips to image URLs and destinations
+      const imageURLsAndDestinationsOfFutureTrips = futureTrips.map((trip) => {
+        const matchingDestination = currentTravelerData.destinations.find(
+          (destination) => destination.id === trip.destinationID
+        );
   
-      return futureTripDestinationIDs;
+        if (matchingDestination) {
+          return {
+            image: matchingDestination.image,
+            destination: matchingDestination.destination,
+          };
+        }
+
+        return {
+          message: 'No matching destination found',
+        };
+      });
+      
+      return imageURLsAndDestinationsOfFutureTrips;
     } else {
       // If currentTravelerData is not valid or has no trips, return an empty array
       return [];
     }
   }
+  
   
 
 
@@ -122,7 +146,8 @@ module.exports = {
     addDataToCurrentTraveler,
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
-    getImageURLsOfFutureTrips
+    getImageURLsOfFutureTrips,
+    
   };
 
 
