@@ -134,3 +134,33 @@ header {
 }
 
 
+/* Existing CSS rules remain unchanged */
+
+/* New CSS rules for trip columns */
+.trip-columns {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.trip-column {
+  flex: 1;
+  margin: 0 10px;
+}
+
+/* Style for the trip images */
+.trip-images {
+  display: flex;
+  flex-wrap: wrap; /* Allow images to wrap to the next line if they don't fit horizontally */
+  justify-content: center; /* Center align images horizontally */
+  gap: 10px; /* Add spacing between images */
+}
+
+/* Style for individual trip image */
+.trip-images img {
+  max-width: 100%; /* Ensure images don't exceed their container's width */
+  height: auto; /* Maintain the aspect ratio of the images */
+  border: 1px solid #ccc; /* Add a border for better separation */
+  border-radius: 5px; /* Add rounded corners to the images */
+}

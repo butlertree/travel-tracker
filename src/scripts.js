@@ -16,7 +16,8 @@ import {
 
 //////////// Import functions from scriptDefinitions //////////////
 import {
-    addDataToCurrentTraveler
+    addDataToCurrentTraveler,
+    getImageURLsOfPendingTrips
     } from './scriptDefinitions';
 
 // const {
@@ -30,6 +31,7 @@ import {
     userNameInput,
     passwordInput,
     loginButton,
+    updatePendingTrips,
     updateUserName,
     loginForm,
     loginSection,
@@ -72,6 +74,12 @@ loginForm.addEventListener('submit', (e) => {
   
    // Update the user name in the dashboard with the fetched currentTraveler's name
             updateUserName(currentTravelerData.traveler);
+
+            const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
+            console.log(pendingTripImageURLs);
+
+                //adding pending images to the dom
+            updatePendingTrips(pendingTripImageURLs)
 
           // Use the currentTravelerData object as needed
           console.log(currentTravelerData);

@@ -34,6 +34,37 @@
   }
  
 
+  ///////////////image urls///////////////////
+
+
+// Function to get image URLs of pending trips
+function getImageURLsOfPendingTrips(currentTravelerData) {
+    // Check if currentTravelerData is valid and has trips
+    if (currentTravelerData && currentTravelerData.trips) {
+      // Filter trips to get only pending trips
+      const pendingTrips = currentTravelerData.trips.filter((trip) => trip.status === 'pending');
+  
+      // Get destination IDs of pending trips
+      const pendingDestinationIDs = pendingTrips.map((trip) => trip.destinationID);
+  
+      // Filter destinations to get only those matching pending destination IDs
+      const matchingDestinations = currentTravelerData.destinations.filter((destination) =>
+        pendingDestinationIDs.includes(destination.id)
+      );
+  
+      // Get image URLs from the matching destinations
+      const imageURLsOfPendingTrips = matchingDestinations.map((destination) => destination.image);
+  
+      return imageURLsOfPendingTrips;
+    } else {
+      // If currentTravelerData is not valid or has no trips, return an empty array
+      return [];
+    }
+  }
+  
+  
+//   const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
+//   console.log(pendingTripImageURLs);
 
 
 
@@ -41,7 +72,8 @@
 
 // EXPORT EVERYTHING LIKE THIS
 module.exports = {
-    addDataToCurrentTraveler
+    addDataToCurrentTraveler,
+    getImageURLsOfPendingTrips
   };
 
 

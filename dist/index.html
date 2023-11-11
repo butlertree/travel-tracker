@@ -11,7 +11,7 @@
 </head>
 <body> -->
 
-    <!-- login -->
+    <!-- Login Section -->
     <!-- <section class="centered-form-wrapper" id="login-section">
         <form id="login-form">
             <div class="form-group">
@@ -28,30 +28,32 @@
 
     <!-- Dashboard Section, initially hidden -->
     <!-- <main id="dashboard">
-        <header>
-            <h1>Welcome, <span id="traveler"></span></h1>
-            <p id="total-cost">Total Amount Spent This Year: $<span id="total-amount">0</span></p>
-        </header>
-
-        <aside>
-            <form id="trip-planner-form">
-                <div class="form-group">
-                    <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" name="start-date" required>
-                </div>
-                <div class="form-group">
-                    <label for="duration">Duration (days):</label>
-                    <input type="number" id="duration" name="duration" placeholder="Duration" required>
-                </div>
-                <div class="form-group">
-                    <label for="travelers">Number of Travelers:</label>
-                    <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
-                </div>
-                <div class="form-group">
-                    <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
-                </div>
-            </form>
-        </aside> -->
+        <header> -->
+            <!-- Move the form to the left side of the header -->
+      
+                <!-- <form id="trip-planner-form">
+                    <div class="form-group">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (days):</label>
+                        <input type="number" id="duration" name="duration" placeholder="Duration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers:</label>
+                        <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
+                    </div>
+                    <div class="form-group">
+                        <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
+                    </div>
+                </form>
+            <div class="header-content"> -->
+                <!-- Display the name of the traveler and amount paid this year -->
+                <!-- <h1>Welcome, <span id="traveler"></span></h1>
+                <p id="total-cost">Total Amount Spent This Year: $<span id="total-amount">0</span></p>
+            </div>
+        </header> -->
 
         <!-- <section class="trip-images">
             <h2>Pending Trips</h2> -->
@@ -62,9 +64,10 @@
             <!-- Past trips will be populated here -->
         <!-- </section>
     </main>
-<script src="bundle.js"></script>
+    <script src="bundle.js"></script>
 </body>
 </html> -->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,24 +101,23 @@
     <main id="dashboard">
         <header>
             <!-- Move the form to the left side of the header -->
-      
-                <form id="trip-planner-form">
-                    <div class="form-group">
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" id="start-date" name="start-date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="duration">Duration (days):</label>
-                        <input type="number" id="duration" name="duration" placeholder="Duration" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="travelers">Number of Travelers:</label>
-                        <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
-                    </div>
-                    <div class="form-group">
-                        <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
-                    </div>
-                </form>
+            <form id="trip-planner-form">
+                <div class="form-group">
+                    <label for="start-date">Start Date:</label>
+                    <input type="date" id="start-date" name="start-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration (days):</label>
+                    <input type="number" id="duration" name="duration" placeholder="Duration" required>
+                </div>
+                <div class="form-group">
+                    <label for="travelers">Number of Travelers:</label>
+                    <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
+                </div>
+                <div class="form-group">
+                    <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
+                </div>
+            </form>
             <div class="header-content">
                 <!-- Display the name of the traveler and amount paid this year -->
                 <h1>Welcome, <span id="traveler"></span></h1>
@@ -123,13 +125,27 @@
             </div>
         </header>
 
-        <section class="trip-images">
-            <h2>Pending Trips</h2>
-            <!-- Pending trips will be populated here -->
-            <h2>Upcoming Trips</h2>
-            <!-- Upcoming trips will be populated here -->
-            <h2>Past Trips</h2>
-            <!-- Past trips will be populated here -->
+        <section class="trip-columns">
+            <div class="trip-column">
+                <h2>Pending Trips</h2>
+                <section id="pending-trips" class="trip-images">
+                    <!-- Pending trips will be populated here -->
+                </section>
+            </div>
+
+            <div class="trip-column">
+                <h2>Upcoming Trips</h2>
+                <section id="upcoming-trips" class="trip-images">
+                    <!-- Upcoming trips will be populated here -->
+                </section>
+            </div>
+
+            <div class="trip-column">
+                <h2>Past Trips</h2>
+                <section id="past-trips" class="trip-images">
+                    <!-- Past trips will be populated here -->
+                </section>
+            </div>
         </section>
     </main>
     <script src="bundle.js"></script>
