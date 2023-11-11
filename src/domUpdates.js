@@ -8,6 +8,8 @@ const travelerName = document.querySelector('#traveler')
 const loginSection = document.getElementById('login-section');
 const dashboardSection = document.getElementById('dashboard');
 const pendingTripsContainer = document.querySelector('#pending-trips')
+const pastTripsContainer = document.querySelector('#past-trips')
+const futureTripsContainer = document.querySelector('#upcoming-trips')
 ///DOM UPDATES TO HERE
 
 
@@ -27,7 +29,7 @@ const updateUserName = (traveler) => {
     pendingTripImageURLs.forEach((imageUrl) => {
       const tripThumbnail = document.createElement('img');
       tripThumbnail.src = imageUrl; // Set the image URL
-      tripThumbnail.alt = 'Pending Trip Thumbnail'; // Set alt text for the image (you can customize this)
+      tripThumbnail.alt = 'Pending Trip Thumbnail'; // Set alt text for the image 
   
             // Add a CSS class to the image
     tripThumbnail.classList.add('thumbnail-image');
@@ -36,6 +38,52 @@ const updateUserName = (traveler) => {
       pendingTripsContainer.appendChild(tripThumbnail);
     });
   };
+
+  // Function to update the DOM with past trip images
+const updatePastTrips = (pastTripImageURLs) => {
+    // Clear the existing content in the container
+    pastTripsContainer.innerHTML = '';
+  
+    // Loop through the pastTripImageURLs and create thumbnail images
+    pastTripImageURLs.forEach((imageUrl) => {
+      const tripThumbnail = document.createElement('img');
+      tripThumbnail.src = imageUrl; // Set the image URL
+      tripThumbnail.alt = 'Past Trip Thumbnail'; // Set alt text for the image 
+  
+      // Add a CSS class to the image
+      tripThumbnail.classList.add('thumbnail-image');
+  
+      // Append the thumbnail to the container
+      pastTripsContainer.appendChild(tripThumbnail);
+    });
+  };
+  
+
+  // Function to update the DOM with future trip images that are not pending
+function updateFutureTrips(futureTripImageURLs) {
+    // Clear the existing content in the container
+    futureTripsContainer.innerHTML = '';
+  
+    // Loop through the futureTripImageURLs and create thumbnail images
+    futureTripImageURLs.forEach((imageUrl) => {
+      const tripThumbnail = document.createElement('img');
+      tripThumbnail.src = imageUrl; // Set the image URL
+      tripThumbnail.alt = 'Future Trip Thumbnail'; // Set alt text for the image (you can customize this)
+  
+      // Add a CSS class to the image
+      tripThumbnail.classList.add('thumbnail-image');
+  
+      // Append the thumbnail to the container
+      futureTripsContainer.appendChild(tripThumbnail);
+    });
+  }
+  
+ 
+
+  
+
+
+
 
 
 ///EXPORTS GO HERE LIKE THIS TEMPLATE
@@ -47,5 +95,7 @@ export {
     dashboardSection,
     loginForm,
     updateUserName,
-    updatePendingTrips
+    updatePendingTrips,
+    updatePastTrips,
+    updateFutureTrips
   }

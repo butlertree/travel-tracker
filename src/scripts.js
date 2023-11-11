@@ -17,12 +17,11 @@ import {
 //////////// Import functions from scriptDefinitions //////////////
 import {
     addDataToCurrentTraveler,
-    getImageURLsOfPendingTrips
+    getImageURLsOfPendingTrips,
+    getImageURLsOfPastTrips,
+    getImageURLsOfFutureTrips
     } from './scriptDefinitions';
 
-// const {
-//     handleLogin
-// } = require('./scriptDefinitions');
 
 
 // ///////////// Import from domUpdates.js ///////////////
@@ -31,6 +30,8 @@ import {
     userNameInput,
     passwordInput,
     loginButton,
+    updateFutureTrips,
+    updatePastTrips,
     updatePendingTrips,
     updateUserName,
     loginForm,
@@ -81,8 +82,19 @@ loginForm.addEventListener('submit', (e) => {
                 //adding pending images to the dom
             updatePendingTrips(pendingTripImageURLs)
 
-          // Use the currentTravelerData object as needed
-          console.log(currentTravelerData);
+            const pastTripImageURLs = getImageURLsOfPastTrips(currentTravelerData);
+                console.log(pastTripImageURLs);
+
+            //  DOM with past trip images
+            updatePastTrips(pastTripImageURLs);
+
+                // Use the currentTravelerData object as needed
+                    console.log(currentTravelerData);
+
+                     // Call the updateFutureTrips function when needed
+            const futureTripImageURLs = getImageURLsOfFutureTrips(currentTravelerData);
+                        //DOM with future trip images
+                        updateFutureTrips(futureTripImageURLs);
         });
       } else {
         // Invalid login, show an error message or alert
