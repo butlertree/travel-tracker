@@ -20,63 +20,116 @@ const updateUserName = (traveler) => {
   }
 
   
-//add pending trip images to the dom
-  const updatePendingTrips = (pendingTripImageURLs) => {
+
+//adding trip image and destination to the dom
+const updatePendingTrips = (pendingTripData) => {
     // Clear the existing content in the container
     pendingTripsContainer.innerHTML = '';
   
-    // Loop through the pendingTripImageURLs and create thumbnail images
-    pendingTripImageURLs.forEach((imageUrl) => {
-      const tripThumbnail = document.createElement('img');
-      tripThumbnail.src = imageUrl; // Set the image URL
-      tripThumbnail.alt = 'Pending Trip Thumbnail'; // Set alt text for the image 
+    // Loop through the pendingTripData and create elements for images and destination names
+    pendingTripData.forEach((tripData) => {
+      // Correctly destructure the properties based on your data structure
+      const { image: imageUrl, destination: destinationName } = tripData;
   
-            // Add a CSS class to the image
-    tripThumbnail.classList.add('thumbnail-image');
-
-      // Append the thumbnail to the container
-      pendingTripsContainer.appendChild(tripThumbnail);
+      // Check if imageUrl and destinationName are defined
+      if (imageUrl && destinationName) {
+        // Create a container div for each pending trip
+        const tripContainer = document.createElement('div');
+  
+        // Create an image element for the thumbnail
+        const tripThumbnail = document.createElement('img');
+        tripThumbnail.src = imageUrl; // Set the image URL
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
+  
+        // Create a paragraph element for the destination name
+        const destinationParagraph = document.createElement('p');
+        destinationParagraph.textContent = destinationName;
+  
+        // Append the thumbnail and destination name to the trip container
+        tripContainer.appendChild(tripThumbnail);
+        tripContainer.appendChild(destinationParagraph);
+  
+        // Append the trip container to the container
+        pendingTripsContainer.appendChild(tripContainer);
+      } else {
+        console.error('Image URL or destination name is missing:', tripData);
+      }
     });
   };
-
-  // Function to update the DOM with past trip images
-const updatePastTrips = (pastTripImageURLs) => {
+  
+const updatePastTrips = (pastTripImageData) => {
     // Clear the existing content in the container
     pastTripsContainer.innerHTML = '';
   
-    // Loop through the pastTripImageURLs and create thumbnail images
-    pastTripImageURLs.forEach((imageUrl) => {
-      const tripThumbnail = document.createElement('img');
-      tripThumbnail.src = imageUrl; // Set the image URL
-      tripThumbnail.alt = 'Past Trip Thumbnail'; // Set alt text for the image 
+    // Loop through the pastTripImageData and create elements for images and destination names
+    pastTripImageData.forEach((tripData) => {
+      // Correctly destructure the properties based on your data structure
+      const { image: imageUrl, destination: destinationName } = tripData;
   
-      // Add a CSS class to the image
-      tripThumbnail.classList.add('thumbnail-image');
+      // Check if imageUrl and destinationName are defined
+      if (imageUrl && destinationName) {
+        // Create a container div for each past trip
+        const tripContainer = document.createElement('div');
   
-      // Append the thumbnail to the container
-      pastTripsContainer.appendChild(tripThumbnail);
+        // Create an image element for the thumbnail
+        const tripThumbnail = document.createElement('img');
+        tripThumbnail.src = imageUrl; // Set the image URL
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
+  
+        // Create a paragraph element for the destination name
+        const destinationParagraph = document.createElement('p');
+        destinationParagraph.textContent = destinationName;
+  
+        // Append the thumbnail and destination name to the trip container
+        tripContainer.appendChild(tripThumbnail);
+        tripContainer.appendChild(destinationParagraph);
+  
+        // Append the trip container to the container
+        pastTripsContainer.appendChild(tripContainer);
+      } else {
+        console.error('Image URL or destination name is missing:', tripData);
+      }
     });
   };
   
+  
 
   // Function to update the DOM with future trip images that are not pending
-function updateFutureTrips(futureTripImageURLs) {
+  function updateFutureTrips(futureTripImageData) {
     // Clear the existing content in the container
     futureTripsContainer.innerHTML = '';
   
-    // Loop through the futureTripImageURLs and create thumbnail images
-    futureTripImageURLs.forEach((imageUrl) => {
-      const tripThumbnail = document.createElement('img');
-      tripThumbnail.src = imageUrl; // Set the image URL
-      tripThumbnail.alt = 'Future Trip Thumbnail'; // Set alt text for the image (you can customize this)
+    // Loop through the futureTripImageData and create elements for images and destination names
+    futureTripImageData.forEach((tripData) => {
+      // Correctly destructure the properties based on your data structure
+      const { image: imageUrl, destination: destinationName } = tripData;
   
-      // Add a CSS class to the image
-      tripThumbnail.classList.add('thumbnail-image');
+      // Check if imageUrl and destinationName are defined
+      if (imageUrl && destinationName) {
+        // Create a container div for each future trip
+        const tripContainer = document.createElement('div');
   
-      // Append the thumbnail to the container
-      futureTripsContainer.appendChild(tripThumbnail);
+        // Create an image element for the thumbnail
+        const tripThumbnail = document.createElement('img');
+        tripThumbnail.src = imageUrl; // Set the image URL
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
+  
+        // Create a paragraph element for the destination name
+        const destinationParagraph = document.createElement('p');
+        destinationParagraph.textContent = destinationName;
+  
+        // Append the thumbnail and destination name to the trip container
+        tripContainer.appendChild(tripThumbnail);
+        tripContainer.appendChild(destinationParagraph);
+  
+        // Append the trip container to the container
+        futureTripsContainer.appendChild(tripContainer);
+      } else {
+        console.error('Image URL or destination name is missing:', tripData);
+      }
     });
   }
+  
   
  
 
