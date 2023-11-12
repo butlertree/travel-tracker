@@ -134,9 +134,55 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
     }
   }
   
-  
+  /////////CALCULATE TOTAL COST FOR THE YEAR////////////////
 
+	function calculateTotalSpentOnTrips(currentTravelerData) {
+		// Get the current date
+		const currentDate = new Date();
+	
+		// Calculate the date 4 years ago from the current date
+		const threeYearsAgo = new Date(currentDate);
+		threeYearsAgo.setFullYear(currentDate.getFullYear() - 4);
+	
+		// Filter trips for the past 3 years and with 'approved' status
+		const recentTrips = currentTravelerData.trips.filter((trip) => {
+			const tripDate = new Date(trip.date);
+			return tripDate >= threeYearsAgo && tripDate <= currentDate && trip.status === 'approved';
+		});
+	
+		console.log('Recent Trips:', recentTrips);
+	
+		// Calculate the total cost spent on trips
+		const totalCost = recentTrips.reduce((sum, trip) => {
+			const destination = currentTravelerData.destinations.find((dest) => dest.id === trip.destinationID);
+	
+			if (destination) {
+				const flightCost = trip.travelers * destination.estimatedFlightCostPerPerson;
+				const lodgingCost = trip.duration * destination.estimatedLodgingCostPerDay;
+				const tripTotalCost = flightCost + lodgingCost;
+	
+				console.log('Trip:', trip);
+				console.log('Flight Cost:', flightCost);
+				console.log('Lodging Cost:', lodgingCost);
+				console.log('Trip Total Cost:', tripTotalCost);
+	
+				return sum + tripTotalCost;
+			}
+	
+			return sum;
+		}, 0);
+	
+		console.log('Total Cost:', totalCost);
+	
+		// Include the travel agent fee (10%)
+		const totalSpentWithFee = totalCost * 1.1;
+	
+		return totalSpentWithFee;
+	}
+	
+	
 
+	
 
 
  
@@ -147,6 +193,7 @@ module.exports = {
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
     getImageURLsOfFutureTrips,
+		calculateTotalSpentOnTrips
     
   };
 

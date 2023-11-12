@@ -19,7 +19,8 @@ import {
     addDataToCurrentTraveler,
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
-    getImageURLsOfFutureTrips
+    getImageURLsOfFutureTrips,
+    calculateTotalSpentOnTrips
     } from './scriptDefinitions';
 
 
@@ -30,6 +31,7 @@ import {
     userNameInput,
     passwordInput,
     loginButton,
+    updateTotalAmountSpent,
     updateFutureTrips,
     updatePastTrips,
     updatePendingTrips,
@@ -79,7 +81,7 @@ loginForm.addEventListener('submit', (e) => {
             const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
             console.log(pendingTripImageURLs);
 
-                //adding pending images to the dom
+                //DOM with pending trips
             updatePendingTrips(pendingTripImageURLs)
 
             const pastTripImageURLs = getImageURLsOfPastTrips(currentTravelerData);
@@ -88,13 +90,16 @@ loginForm.addEventListener('submit', (e) => {
             //  DOM with past trip images
             updatePastTrips(pastTripImageURLs);
 
-                // Use the currentTravelerData object as needed
-                    console.log(currentTravelerData);
-
-                     // Call the updateFutureTrips function when needed
+                     // DOM with future trips
             const futureTripImageURLs = getImageURLsOfFutureTrips(currentTravelerData);
                         //DOM with future trip images
                         updateFutureTrips(futureTripImageURLs);
+
+            //             //DOM with total amount spent 3 years
+            const totalSpent = calculateTotalSpentOnTrips(currentTravelerData);
+            console.log(totalSpent)
+            updateTotalAmountSpent(totalSpent)
+
         });
       } else {
         // Invalid login, show an error message or alert
