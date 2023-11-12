@@ -44,15 +44,30 @@ body {
   cursor: pointer;
 }
 
-
 #user-name {
   font-weight: bold;
+}
+
+.header-content {
+  flex: 1; /* Take up remaining space in the header */
+  display: flex; /* Display content in a column */
+  flex-direction: column; /* Arrange content in a column */
+  align-items: flex-end; /* Align content to the far right side */
 }
 
 #total-cost {
   margin-top: 10px;
   font-weight: bold;
 }
+
+.header-content h1 {
+  font-size: 50px
+}
+
+.header-content h2 {
+  font-size: 10px;
+}
+
 
 
 #trip-planner-form {
@@ -88,20 +103,6 @@ body {
   margin-top: 20px;
 }
 
-h2 {
-  text-align: center;
-  width: 100%;
-}
-
-
-.header-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-right: 20px;
-}
-
 
 #dashboard {
   display: none;
@@ -119,9 +120,8 @@ header {
   border-radius: 10px;
 }
 
-.header-content {
-  flex: 1; /* Take up remaining space in the header */
-}
+
+
 
 .trip-planner {
   flex-shrink: 0; /* Prevent the form from growing and take up left space */

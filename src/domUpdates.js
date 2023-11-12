@@ -10,6 +10,8 @@ const dashboardSection = document.getElementById('dashboard');
 const pendingTripsContainer = document.querySelector('#pending-trips')
 const pastTripsContainer = document.querySelector('#past-trips')
 const futureTripsContainer = document.querySelector('#upcoming-trips')
+const totalAmountSpent = document.querySelector('#total-amount')
+
 ///DOM UPDATES TO HERE
 
 
@@ -18,6 +20,12 @@ const updateUserName = (traveler) => {
     travelerName.innerHTML ='';
     travelerName.innerHTML += `<h1>${traveler.name}</h1></p>`;
   }
+
+  //add amount total amount spent to dom
+  const updateTotalAmountSpent = (total) => {
+    totalAmountSpent.innerHTML = '';
+    totalAmountSpent.innerHTML += `<p>$${total.toFixed(2)}</p>`;
+}
 
   
 
@@ -150,5 +158,6 @@ export {
     updateUserName,
     updatePendingTrips,
     updatePastTrips,
-    updateFutureTrips
+    updateFutureTrips,
+    updateTotalAmountSpent
   }
