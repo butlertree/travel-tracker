@@ -11,6 +11,8 @@ const pendingTripsContainer = document.querySelector('#pending-trips')
 const pastTripsContainer = document.querySelector('#past-trips')
 const futureTripsContainer = document.querySelector('#upcoming-trips')
 const totalAmountSpent = document.querySelector('#total-amount')
+const destinationDropdown = document.getElementById('destination-dropdown');
+
 
 ///DOM UPDATES TO HERE
 
@@ -138,12 +140,21 @@ const updatePastTrips = (pastTripImageData) => {
     });
   }
   
-  
+//////FUNCTON TO ADD ALL DESTINATIONS THE DASHBOARD
  
 
-  
+const updateDestinationDropdown = (destinationData) => {
+    // Clear any existing options
+    destinationDropdown.innerHTML = '';
 
-
+    // Loop through destinationData and create options for the dropdown
+    destinationData.forEach((destination, index) => {
+        const option = document.createElement('option');
+        option.value = index; // Set the value to the index for reference
+        option.text = destination.destination; // Set the text to the destination name
+        destinationDropdown.appendChild(option);
+    });
+};
 
 
 
@@ -159,5 +170,6 @@ export {
     updatePendingTrips,
     updatePastTrips,
     updateFutureTrips,
-    updateTotalAmountSpent
+    updateTotalAmountSpent,
+    updateDestinationDropdown
   }

@@ -21,42 +21,65 @@
                 <input type="password" id="password" aria-label="password input field" placeholder="Password" required>
             </div>
             <div class="form-group">
-                <button type="submit" id="submitLogin">Login</button>
+                <button type="submit" class="custom-button" id="submitLogin">Login</button>
             </div>
         </form>
     </section>
 
-    <!-- Dashboard Section, initially hidden -->
+    <!-- Dashboard Section -->
     <main id="dashboard">
         <header>
-            <!-- Move the form to the left side of the header -->
-            <form id="trip-planner-form">
-                <div class="form-group">
-                    <label for="start-date">Start Date:</label>
-                    <input type="date" id="start-date" name="start-date" required>
-                </div>
-                <div class="form-group">
-                    <label for="duration">Duration (days):</label>
-                    <input type="number" id="duration" name="duration" placeholder="Duration" required>
-                </div>
-                <div class="form-group">
-                    <label for="travelers">Number of Travelers:</label>
-                    <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
-                </div>
-                <div class="form-group">
-                    <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
-                </div>
-            </form>
-            <div class="header-content">
-              <!-- Display the name of the traveler -->
-              <h1>Welcome,</h1>
-              <h2><span id="traveler"></span></h2>
-              <!-- Display the total amount spent -->
-              <p id="total-cost">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
+            <!-- Header Top Content: Trip Planner Form & Welcome Message -->
+            <div class="header-top-content">
+                <section id="trip-planner-form">
+                    <div class="form-group">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" name="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (days):</label>
+                        <input type="number" id="duration" name="duration" placeholder="Duration" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers:</label>
+                        <input type="number" id="travelers" name="travelers" placeholder="Travelers" required>
+                    </div>
+                    <div class="form-group">
+                        <p id="estimated-cost">Estimated Cost: $<span>0</span></p>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="dashboard-button" id="cost-button">Cost</button>
+                        <button type="submit" class="dashboard-button" id="submit-trip">Submit</button>
+                    </div>
+                </section>
+
+                <section class="header-content">
+                    <!-- Display the name of the traveler -->
+                    <h1>Welcome,</h1>
+                    <h2><span id="traveler"></span></h2>
+                    <!-- Display the total amount spent -->
+                    <p id="total-cost">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
+                </section>
             </div>
+
+            <!-- Choose A Destination Header -->
+            <section id="destination-header">
+                <h3>Choose A Destination</h3>
+            </section>
         </header>
 
+        <!-- Scrollable Images -->
+        <!-- <section id="destination-image" class="scrollable-images">
+            
+        </section> -->
+        <!-- Dropdown Menu for Locations -->
+            <select id="destination-dropdown" class="destination-dropdown">
+        <!-- Options for locations will be added here dynamically -->
+            </select>
+
+        <!-- Trip Columns Section -->
         <section class="trip-columns">
+            <!-- Pending Trips Column -->
             <div class="trip-column">
                 <h2>Pending Trips</h2>
                 <section id="pending-trips" class="trip-images">
@@ -64,6 +87,7 @@
                 </section>
             </div>
 
+            <!-- Upcoming Trips Column -->
             <div class="trip-column">
                 <h2>Upcoming Trips</h2>
                 <section id="upcoming-trips" class="trip-images">
@@ -71,6 +95,7 @@
                 </section>
             </div>
 
+            <!-- Past Trips Column -->
             <div class="trip-column">
                 <h2>Past Trips</h2>
                 <section id="past-trips" class="trip-images">
@@ -79,6 +104,7 @@
             </div>
         </section>
     </main>
+
     <script src="bundle.js"></script>
 </body>
 </html>
