@@ -31,6 +31,8 @@ import {
     userNameInput,
     passwordInput,
     loginButton,
+    updateDestinationDropdown,
+    // updateDestinationImages,
     updateTotalAmountSpent,
     updateFutureTrips,
     updatePastTrips,
@@ -80,6 +82,10 @@ loginForm.addEventListener('submit', (e) => {
 
             const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
             console.log(pendingTripImageURLs);
+
+            //DOM with drop down
+            updateDestinationDropdown(allDestinations)
+
 
                 //DOM with pending trips
             updatePendingTrips(pendingTripImageURLs)
