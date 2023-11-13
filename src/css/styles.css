@@ -169,10 +169,10 @@ header {
 
 /* Destination Header */
 #destination-header h3 {
-  color: #445570;
+  color: #2068dc;
   text-align: center;
-  font-size: 6rem;
-  margin-bottom: 1rem;
+  font-size: 50px;
+  margin-bottom: 10px;
 }
 
 /* Header Top Content */

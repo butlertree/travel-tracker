@@ -1,4 +1,4 @@
-
+let currentTravelerData;
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
@@ -11,7 +11,8 @@ import {
     fetchAllTheData,
     allTravelers,
     allTrips,
-    allDestinations
+    allDestinations,
+    postTripData
 } from './apiCall';
 
 //////////// Import functions from scriptDefinitions //////////////
@@ -51,7 +52,7 @@ import {
 // //THIS IS WHERE YOUR CODE RUNS FROM
 
 // Event listener for the login form submission
-loginForm.addEventListener('submit', (e) => {
+loginButton.addEventListener('click', (e) => {
     e.preventDefault(); // Prevent the default form submission
   
     // Get the values of the username and password fields
@@ -75,7 +76,7 @@ loginForm.addEventListener('submit', (e) => {
   
         // Fetch all the data and create the currentTraveler object
         fetchAllTheData().then(() => {
-          const currentTravelerData = addDataToCurrentTraveler(
+          currentTravelerData = addDataToCurrentTraveler(
             travelerNumber, // Pass the login ID
             allTravelers, // Pass the variable directly
             allTrips, // Pass the variable directly
@@ -150,6 +151,69 @@ calculateCost.addEventListener('click', () => {
 
 
 
+
+/////ADDING PENDING TRIPS//////////////
+
+// Event listener for the submit trip button
+submitTripButton.addEventListener('click', () => {
+  // Get the values from your DOM elements
+  const dateInputValue = dateInput.value; // You may need to parse/format this value as needed
+  const duration = parseInt(durationInput.value);
+  const travelers = parseInt(travelersInput.value);
+  const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
+
+  // Calculate the new trip's id based on the length of the allTrips array + 1
+  const newTripId = allTrips.length + 1;
+
+  // Parse the date using JavaScript Date and then format it as "YYYY/MM/DD"
+  const date = new Date(dateInputValue);
+  const formattedDate = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`;
+
+  // Create the new trip object with a "pending" status
+  const newTrip = {
+    id: newTripId, // Assign the calculated new id
+    userID: currentTravelerData.traveler.id, // Assuming you have access to the current traveler's ID
+    destinationID: allDestinations[selectedDestinationIndex].id, // Get the destination ID from the selected index
+    travelers: travelers,
+    date: formattedDate,
+    duration: duration,
+    status: "pending", // Set the status to "pending"
+    suggestedActivities: []
+  };
+
+  // Use the postTripData function to post the new trip to the server
+  postTripData(newTrip)
+    .then(addedTripData => {
+      // Handle the response, e.g., update the DOM with addedTripData if needed
+      console.log('New Trip Object:', addedTripData);
+
+      // Fetch the updated data
+      fetchAllTheData()
+        .then(updatedData => {
+          currentTravelerData = addDataToCurrentTraveler(
+            currentTravelerData.traveler.id, // Pass the correct traveler ID
+            allTravelers, // Pass the variable directly
+            allTrips, // Pass the variable directly
+            allDestinations // Pass the variable directly
+          );
+
+          // After successfully adding the new trip, you can update the pending trips in the DOM
+          // Call the updatePendingTrips function with the updated currentTravelerData
+          const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
+          updatePendingTrips(pendingTripImageURLs);
+
+          // Additional DOM updates can be done here
+        })
+        .catch(error => {
+          // Handle errors related to fetching data
+          console.error('Fetch Data Error:', error);
+        });
+    })
+    .catch(error => {
+      // Handle errors related to the POST request
+      console.error('POST Error:', error);
+    });
+});
 
 
 
