@@ -1,3 +1,4 @@
+/* Body */
 body {
   background-image: url('https://images.unsplash.com/photo-1543785734-4b6e564642f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
   background-size: cover;
@@ -5,6 +6,7 @@ body {
   font-family: 'Handlee', sans-serif;
 }
 
+/* Centered Form Wrapper */
 .centered-form-wrapper {
   display: flex;
   justify-content: center;
@@ -12,6 +14,7 @@ body {
   height: 100vh;
 }
 
+/* Login Form */
 #login-form {
   background-color: #ffffffa6;
   padding: 70px;
@@ -19,6 +22,7 @@ body {
   text-align: center;
 }
 
+/* Form Inputs */
 .form-group input[type="text"],
 .form-group input[type="password"] {
   width: 100%;
@@ -29,10 +33,11 @@ body {
   font-size: 16px;
 }
 
+/* Custom Buttons */
 .custom-button,
 .dashboard-button {
   width: auto;
-  padding: 0.75rem 1.5rem;
+  padding: 12px 24px; /* Adjusted for consistency */
   border: none;
   border-radius: 5px;
   font-size: 16px;
@@ -43,6 +48,7 @@ body {
   margin-bottom: 10px;
 }
 
+/* Header Content */
 .header-content {
   flex: 1;
   display: flex;
@@ -58,7 +64,7 @@ body {
 }
 
 .header-content h2 {
-  font-size: 0.625rem;
+  font-size: 10px; /* Adjusted for consistency */
   margin-bottom: 0.5rem;
 }
 
@@ -68,6 +74,7 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Trip Planner Form */
 #trip-planner-form {
   flex: 0 0 20%;
   background-color: #ffffff;
@@ -77,6 +84,7 @@ body {
   text-align: center;
 }
 
+/* Form Group */
 .form-group {
   margin: 10px 0;
 }
@@ -89,11 +97,13 @@ body {
   border-radius: 5px;
 }
 
+/* Estimated Cost */
 #estimated-cost {
   font-weight: bold;
   margin-top: 10px;
 }
 
+/* Trip Images */
 .trip-images {
   display: flex;
   justify-content: space-between;
@@ -101,6 +111,7 @@ body {
   margin-top: 20px;
 }
 
+/* Dashboard */
 #dashboard {
   display: none;
   background-color: #f0f0f0d7;
@@ -109,6 +120,7 @@ body {
   color: #07162e;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -121,6 +133,7 @@ header {
   min-height: 150px;
 }
 
+/* Trip Planner */
 .trip-planner {
   flex-shrink: 0;
   width: 30%;
@@ -131,6 +144,7 @@ header {
   text-align: center;
 }
 
+/* Trip Columns */
 .trip-columns {
   display: flex;
   justify-content: space-between;
@@ -143,6 +157,7 @@ header {
   margin: 0 10px;
 }
 
+/* Trip Images */
 .trip-images {
   display: flex;
   flex-wrap: wrap;
@@ -157,37 +172,7 @@ header {
   border-radius: 5px;
 }
 
-.scrollable-images {
-  margin-top: 0;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  align-items: center;
-  height: 150px;
-  white-space: nowrap;
-}
-
-
-.scrollable-images .destination-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-right: 10px;
-  width: auto; /* Adjust the width as needed */
-}
-
-
-.scrollable-images .destination-item img {
-  max-height: 100px; /* Adjust the maximum height as needed */
-  max-width: 100%; /* Maintain the aspect ratio */
-}
-
-.scrollable-images .destination-item p {
-  margin-top: 5px; /* Adjust the margin as needed */
-  font-size: 14px; /* Adjust the font size as needed */
-}
-
+/* Destination Header */
 #destination-header h3 {
   color: #445570;
   text-align: center;
@@ -195,13 +180,31 @@ header {
   margin-bottom: 1rem;
 }
 
+/* Header Top Content */
 .header-top-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#destination-header {
+/* Login Form - Form Group */
+#login-form .form-group {
+  display: flex;
+  justify-content: center;
+}
+
+/* Login Form - Custom Buttons */
+#login-form .custom-button,
+#login-form .dashboard-button {
   width: 100%;
-  text-align: center;
+  margin: 10px 0;
+}
+
+/* Destination Dropdown */
+#destination-dropdown {
+  width: 100%; /* Make the dropdown take up the full width */
+  padding: 12px; /* Add some padding for better visual appearance */
+  font-size: 16px; /* Increase font size for better readability */
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
