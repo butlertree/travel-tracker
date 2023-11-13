@@ -16,6 +16,7 @@ import {
 
 //////////// Import functions from scriptDefinitions //////////////
 import {
+    calculateTripCost,
     addDataToCurrentTraveler,
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
@@ -27,12 +28,15 @@ import {
 
 // ///////////// Import from domUpdates.js ///////////////
 
-import {  
-    userNameInput,
-    passwordInput,
-    loginButton,
+import {
+    tripSelectionIndex,
+    submitTripButton,
+    calculateCost,
+    travelersInput,
+    durationInput,
+    dateInput,
+    updateCostOfSingleTrip,
     updateDestinationDropdown,
-    // updateDestinationImages,
     updateTotalAmountSpent,
     updateFutureTrips,
     updatePastTrips,
@@ -41,6 +45,7 @@ import {
     loginForm,
     loginSection,
     dashboardSection,
+    loginButton,
   } from './domUpdates';
 
 // //THIS IS WHERE YOUR CODE RUNS FROM
@@ -76,6 +81,8 @@ loginForm.addEventListener('submit', (e) => {
             allTrips, // Pass the variable directly
             allDestinations // Pass the variable directly
           );
+
+          console.log(allDestinations)
   
    // Update the user name in the dashboard with the fetched currentTraveler's name
             updateUserName(currentTravelerData.traveler);
@@ -101,10 +108,12 @@ loginForm.addEventListener('submit', (e) => {
                         //DOM with future trip images
                         updateFutureTrips(futureTripImageURLs);
 
-            //             //DOM with total amount spent 3 years
+            //             //DOM with total amount spent 4 years
             const totalSpent = calculateTotalSpentOnTrips(currentTravelerData);
             console.log(totalSpent)
             updateTotalAmountSpent(totalSpent)
+
+        
 
         });
       } else {
@@ -117,3 +126,32 @@ loginForm.addEventListener('submit', (e) => {
     }
   });
   
+
+
+//    CALCULATING SINGLE TRIP COST
+calculateCost.addEventListener('click', () => {
+    // Get the values from your DOM elements
+    const duration = parseInt(durationInput.value);
+    const travelers = parseInt(travelersInput.value);
+    const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
+
+    // Retrieve the selected destination data based on the index
+    const selectedDestination = allDestinations[selectedDestinationIndex];
+
+
+    // Calculate the trip cost using the imported function
+    const totalCost = calculateTripCost(dateInput, duration, travelers, selectedDestination);
+
+    console.log('Total Trip Cost:', totalCost);
+
+    // Update the cost on the DOM
+    updateCostOfSingleTrip(totalCost);
+});
+
+
+
+
+
+
+
+

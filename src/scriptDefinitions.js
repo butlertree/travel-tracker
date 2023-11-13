@@ -182,10 +182,20 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
 	
 	
 
-	
 
 
- 
+// CALCULATE SINGLE TRIP COST
+
+function calculateTripCost(date,duration, travelers, selectedDestination) {
+	const lodgingCost = duration * selectedDestination.estimatedLodgingCostPerDay;
+	const flightCost = travelers * selectedDestination.estimatedFlightCostPerPerson;
+	const agentFee = 0.1; // 10% agent fee
+	const totalCost = (lodgingCost + flightCost) * (1 + agentFee);
+	return totalCost;
+}
+
+
+
 
 // EXPORT EVERYTHING LIKE THIS
 module.exports = {
@@ -193,7 +203,8 @@ module.exports = {
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
     getImageURLsOfFutureTrips,
-		calculateTotalSpentOnTrips
+		calculateTotalSpentOnTrips,
+		calculateTripCost
     
   };
 

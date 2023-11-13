@@ -5,13 +5,23 @@ const password = document.querySelector('#password')
 const loginButton = document.querySelector('#submitLogin')
 const loginForm = document.querySelector('#login-form');
 const travelerName = document.querySelector('#traveler')
-const loginSection = document.getElementById('login-section');
-const dashboardSection = document.getElementById('dashboard');
+const loginSection = document.querySelector('#login-section');
+const dashboardSection = document.querySelector('#dashboard');
 const pendingTripsContainer = document.querySelector('#pending-trips')
 const pastTripsContainer = document.querySelector('#past-trips')
 const futureTripsContainer = document.querySelector('#upcoming-trips')
 const totalAmountSpent = document.querySelector('#total-amount')
-const destinationDropdown = document.getElementById('destination-dropdown');
+const destinationDropdown = document.querySelector('#destination-dropdown');
+const dateInput = document.querySelector('#start-date')
+const durationInput = document.querySelector('#duration')
+const travelersInput = document.querySelector('#travelers')
+const calculateCost = document.querySelector('#cost-button')
+const submitTripButton = document.querySelector('#submit-trip')
+const tripSelectionIndex = document.querySelector('#destination-dropdown')
+const viewTripCost = document.querySelector('#trip-cost')
+
+const validationMessages = document.querySelector('#validation-messages');
+
 
 
 ///DOM UPDATES TO HERE
@@ -29,7 +39,14 @@ const updateUserName = (traveler) => {
     totalAmountSpent.innerHTML += `<p>$${total.toFixed(2)}</p>`;
 }
 
-  
+ //add cost for a single trip
+ const updateCostOfSingleTrip = (cost) => {
+        viewTripCost.innerHTML = '';
+        viewTripCost.innerHTML += `<p>$${cost.toFixed(2)}</p>`;
+ }
+
+
+
 
 //adding trip image and destination to the dom
 const updatePendingTrips = (pendingTripData) => {
@@ -139,10 +156,13 @@ const updatePastTrips = (pastTripImageData) => {
       }
     });
   }
-  
-//////FUNCTON TO ADD ALL DESTINATIONS THE DASHBOARD
- 
 
+
+
+
+  
+//////FUNCTON TO ADD ALL DESTINATIONS VIA DROPDOWN TO THE DASHBOARD
+ 
 const updateDestinationDropdown = (destinationData) => {
     // Clear any existing options
     destinationDropdown.innerHTML = '';
@@ -160,6 +180,13 @@ const updateDestinationDropdown = (destinationData) => {
 
 ///EXPORTS GO HERE LIKE THIS TEMPLATE
 export {
+    validationMessages,
+    tripSelectionIndex,
+    submitTripButton,
+    calculateCost,
+    travelersInput,
+    durationInput,
+    dateInput,
     username,
     password,
     loginButton,
@@ -171,5 +198,6 @@ export {
     updatePastTrips,
     updateFutureTrips,
     updateTotalAmountSpent,
-    updateDestinationDropdown
+    updateDestinationDropdown,
+    updateCostOfSingleTrip
   }
