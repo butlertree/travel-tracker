@@ -6,8 +6,8 @@ const {
     getImageURLsOfPendingTrips,
     getImageURLsOfPastTrips,
     getImageURLsOfFutureTrips,
-	calculateTotalSpentOnTrips,
-	calculateTripCost
+	  calculateTotalSpentOnTrips,
+	  calculateTripCost
     } = require('../src/scriptDefinitions');
 
 //ACCESS TO THE TEST DATA
@@ -190,5 +190,71 @@ describe('getImageURLsOfFutureTrips', function () {
 
     // empty array
     expect(result).to.be.an('array').that.is.empty;
+  });
+});
+
+
+
+/////CALCULATION TOTAL SPENT ON TRIPS///////////////
+
+describe('calculateTotalSpentOnTrips', function () {
+  it('should calculate the total amount spent on approved trips in the past 3 years with travel agent fee included', function () {
+    const currentTravelerData = addDataToCurrentTraveler(1, travelers, trips, destinations);
+     
+    const result = calculateTotalSpentOnTrips(currentTravelerData);
+
+    //  floating-point number "a string"
+    const resultFloat = parseFloat(result);
+
+    // parsed = expected number
+    const expected = 7370.00;
+
+    expect(resultFloat).to.equal(expected);
+  });
+
+  it('should return 0 when there are no approved trips in the past 3 years', function () {
+    const currentTravelerData = addDataToCurrentTraveler(6, travelers, trips, destinations);
+    const result = calculateTotalSpentOnTrips(currentTravelerData);
+
+    // floating-point 
+    const resultFloat = parseFloat(result);
+
+    const expected = 0.00;
+
+    expect(resultFloat).to.equal(expected);
+  });
+});
+
+
+
+////CALCULATE SINGLE TRIP COST/////////////
+describe('calculateTripCost', function () {
+  it('should calculate the cost of a trip with valid inputs', function () {
+    const date = '2023/05/15';
+    const duration = 7;
+    const travelers = 2;
+
+    const selectedDestination = destinations[0]; 
+    const result = calculateTripCost(date, duration, travelers, selectedDestination);
+
+    // Calculate expected cost 
+    const lodgingCost = duration * selectedDestination.estimatedLodgingCostPerDay;
+    const flightCost = travelers * selectedDestination.estimatedFlightCostPerPerson;
+    const agentFee = 0.1; // 10% agent fee
+    const expected = (lodgingCost + flightCost) * (1 + agentFee);
+
+    expect(result).to.equal(expected);
+  });
+
+  it('should return null for invalid inputs', function () {
+    // Invalid inputs
+    const date = '2023/05/15';
+    const duration = null;
+    const travelers = 2;
+
+    const selectedDestination = destinations[0]; 
+    const result = calculateTripCost(date, duration, travelers, selectedDestination);
+
+    expect(result).to.equal(null);
   });
 });
