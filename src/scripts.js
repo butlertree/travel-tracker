@@ -114,8 +114,6 @@ loginButton.addEventListener('click', (e) => {
             console.log(totalSpent)
             updateTotalAmountSpent(totalSpent)
 
-        
-
         });
       } else {
         // Invalid login, show an error message or alert
@@ -129,24 +127,30 @@ loginButton.addEventListener('click', (e) => {
   
 
 
-//    CALCULATING SINGLE TRIP COST
+// CALCULATING SINGLE TRIP COST
 calculateCost.addEventListener('click', () => {
-    // Get the values from your DOM elements
-    const duration = parseInt(durationInput.value);
-    const travelers = parseInt(travelersInput.value);
-    const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
+  // Get the values from your DOM elements
+  const duration = parseInt(durationInput.value);
+  const travelers = parseInt(travelersInput.value);
+  const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
 
-    // Retrieve the selected destination data based on the index
-    const selectedDestination = allDestinations[selectedDestinationIndex];
+  // Retrieve the selected destination data based on the index
+  const selectedDestination = allDestinations[selectedDestinationIndex];
 
+  // Check if the input fields are empty or invalid
+  if (isNaN(duration) || isNaN(travelers) || isNaN(selectedDestinationIndex)) {
+    // Display an error message
+    alert('Please fill in all the required fields with valid values.');
+    return; // Exit the function
+  }
 
-    // Calculate the trip cost using the imported function
-    const totalCost = calculateTripCost(dateInput, duration, travelers, selectedDestination);
+  // Calculate the trip cost using the imported function
+  const totalCost = calculateTripCost(dateInput, duration, travelers, selectedDestination);
 
-    console.log('Total Trip Cost:', totalCost);
+  console.log('Total Trip Cost:', totalCost);
 
-    // Update the cost on the DOM
-    updateCostOfSingleTrip(totalCost);
+  // Update the cost on the DOM
+  updateCostOfSingleTrip(totalCost);
 });
 
 
@@ -161,6 +165,18 @@ submitTripButton.addEventListener('click', () => {
   const duration = parseInt(durationInput.value);
   const travelers = parseInt(travelersInput.value);
   const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
+
+  // Check if any of the required fields are empty or invalid
+  if (
+    dateInputValue.trim() === '' ||
+    isNaN(duration) ||
+    isNaN(travelers) ||
+    isNaN(selectedDestinationIndex)
+  ) {
+    // Display an error message
+    alert('Please fill in all the required fields with valid values.');
+    return; // Exit the function
+  }
 
   // Calculate the new trip's id based on the length of the allTrips array + 1
   const newTripId = allTrips.length + 1;
@@ -189,7 +205,7 @@ submitTripButton.addEventListener('click', () => {
 
       // Fetch the updated data
       fetchAllTheData()
-        .then(updatedData => {
+        .then(() => {
           currentTravelerData = addDataToCurrentTraveler(
             currentTravelerData.traveler.id, // Pass the correct traveler ID
             allTravelers, // Pass the variable directly
@@ -214,6 +230,18 @@ submitTripButton.addEventListener('click', () => {
       console.error('POST Error:', error);
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
