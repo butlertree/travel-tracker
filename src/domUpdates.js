@@ -1,9 +1,6 @@
-//query selectors go here
-
 const username = document.querySelector('#username')
 const password = document.querySelector('#password')
 const loginButton = document.querySelector('#submitLogin')
-const loginForm = document.querySelector('#login-form');
 const travelerName = document.querySelector('#traveler')
 const loginSection = document.querySelector('#login-section');
 const dashboardSection = document.querySelector('#dashboard');
@@ -25,60 +22,59 @@ const viewTripCost = document.querySelector('#trip-cost')
 
 
 
-///DOM UPDATES TO HERE
+////////DOM UPDATES TO HERE/////////
 
 
-//add user name to the dom 
+//TRAVELER NAME
 const updateUserName = (traveler) => {
     travelerName.innerHTML ='';
     travelerName.innerHTML += `<h1>${traveler.name}</h1></p>`;
   }
 
-  //add amount total amount spent to dom
+  //TOTAL SPENT
   const updateTotalAmountSpent = (total) => {
     totalAmountSpent.innerHTML = '';
-    totalAmountSpent.innerHTML += `<p>$${total.toFixed(2)}</p>`;
+    totalAmountSpent.innerHTML += `<p>$${total}</p>`;
 }
 
- //add cost for a single trip
+ //COST OF SINGLE TRIP
  const updateCostOfSingleTrip = (cost) => {
         viewTripCost.innerHTML = '';
         viewTripCost.innerHTML += `<p>$${cost.toFixed(2)}</p>`;
  }
 
 
-
-
-//adding trip image and destination to the dom
+////PENDING - PAST - FUTURE TRIP IMAGES TO DOM////
 const updatePendingTrips = (pendingTripData) => {
-    // Clear the existing content in the container
+    
     pendingTripsContainer.innerHTML = '';
   
-    // Loop through the pendingTripData and create elements for images and destination names
+    // CREATE ELEMENTS 
     pendingTripData.forEach((tripData) => {
-      // Correctly destructure the properties based on your data structure
-      const { image: imageUrl, destination: destinationName } = tripData;
+      
+      const imageUrl = tripData.image;
+      const destinationName = tripData.destination;
   
-      // Check if imageUrl and destinationName are defined
+      
       if (imageUrl && destinationName) {
-        // Create a container div for each pending trip
+        // CONTAINER
         const tripContainer = document.createElement('div');
   
-        // Create an image element for the thumbnail
+        // THUMBNAIL IMAGE ELEMENT
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
         tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
         tripThumbnail.tabIndex = 0
   
-        // Create a paragraph element for the destination name
+        // PARAGRAPH FOR DESTINATION NAME
         const destinationParagraph = document.createElement('p');
         destinationParagraph.textContent = destinationName;
   
-        // Append the thumbnail and destination name to the trip container
+        // ADD TO TRIP CONTAINER
         tripContainer.appendChild(tripThumbnail);
         tripContainer.appendChild(destinationParagraph);
   
-        // Append the trip container to the container
+        // ADD TRIP TO CONTAINER
         pendingTripsContainer.appendChild(tripContainer);
       } else {
         console.error('Image URL or destination name is missing:', tripData);
@@ -87,34 +83,35 @@ const updatePendingTrips = (pendingTripData) => {
   };
   
 const updatePastTrips = (pastTripImageData) => {
-    // Clear the existing content in the container
+    
     pastTripsContainer.innerHTML = '';
   
-    // Loop through the pastTripImageData and create elements for images and destination names
+    //CREATE ELEMENTS
     pastTripImageData.forEach((tripData) => {
-      // Correctly destructure the properties based on your data structure
-      const { image: imageUrl, destination: destinationName } = tripData;
+      
+      const imageUrl = tripData.image;
+      const destinationName = tripData.destination;
   
-      // Check if imageUrl and destinationName are defined
+      
       if (imageUrl && destinationName) {
-        // Create a container div for each past trip
+        // DIV CONTAINEER
         const tripContainer = document.createElement('div');
   
-        // Create an image element for the thumbnail
+        // IMG ELEMENT
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
         tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
         tripThumbnail.tabIndex = 0
 
-        // Create a paragraph element for the destination name
+        // PARAGRAPH ELEMENT
         const destinationParagraph = document.createElement('p');
         destinationParagraph.textContent = destinationName;
   
-        // Append the thumbnail and destination name to the trip container
+        // ADD TO TRIP CONTAINER
         tripContainer.appendChild(tripThumbnail);
         tripContainer.appendChild(destinationParagraph);
   
-        // Append the trip container to the container
+        // ADD TRIP TO CONTAINER
         pastTripsContainer.appendChild(tripContainer);
       } else {
         console.error('Image URL or destination name is missing:', tripData);
@@ -126,34 +123,35 @@ const updatePastTrips = (pastTripImageData) => {
 
   // Function to update the DOM with future trip images that are not pending
   function updateFutureTrips(futureTripImageData) {
-    // Clear the existing content in the container
+    
     futureTripsContainer.innerHTML = '';
   
-    // Loop through the futureTripImageData and create elements for images and destination names
+    // CREATE ELEMENTS
     futureTripImageData.forEach((tripData) => {
-      // Correctly destructure the properties based on your data structure
-      const { image: imageUrl, destination: destinationName } = tripData;
+      
+      const imageUrl = tripData.image;
+      const destinationName = tripData.destination;
   
-      // Check if imageUrl and destinationName are defined
+      
       if (imageUrl && destinationName) {
-        // Create a container div for each future trip
+        // DIV CONTAINER
         const tripContainer = document.createElement('div');
   
-        // Create an image element for the thumbnail
+        // IMAGE ELEMENT
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
         tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
         tripThumbnail.tabIndex = 0
   
-        // Create a paragraph element for the destination name
+        // PARAGRAPH ELEMENT
         const destinationParagraph = document.createElement('p');
         destinationParagraph.textContent = destinationName;
   
-        // Append the thumbnail and destination name to the trip container
+        // ADD TO TRIP CONTAINER
         tripContainer.appendChild(tripThumbnail);
         tripContainer.appendChild(destinationParagraph);
   
-        // Append the trip container to the container
+        // ADD TRIP TO CONTAINER
         futureTripsContainer.appendChild(tripContainer);
       } else {
         console.error('Image URL or destination name is missing:', tripData);
@@ -168,10 +166,9 @@ const updatePastTrips = (pastTripImageData) => {
 //////FUNCTON TO ADD ALL DESTINATIONS VIA DROPDOWN TO THE DASHBOARD
  
 const updateDestinationDropdown = (destinationData) => {
-    // Clear any existing options
+    
     destinationDropdown.innerHTML = '';
 
-    // Loop through destinationData and create options for the dropdown
     destinationData.forEach((destination, index) => {
         const option = document.createElement('option');
         option.value = index; // Set the value to the index for reference
@@ -196,7 +193,6 @@ export {
     loginButton,
     loginSection,
     dashboardSection,
-    // loginForm,
     updateUserName,
     updatePendingTrips,
     updatePastTrips,

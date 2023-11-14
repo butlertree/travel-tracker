@@ -7,7 +7,7 @@ let allTrips = null;
 let allDestinations = null;
 
 
-//Do fetch calls here
+//FETCH CALLS
 
 ////////// FETCH TRAVELERS ////////////
 const fetchTravelers = () => {
@@ -78,10 +78,8 @@ function postTripData(newTrip) {
         return response.json();
     })
     .then(addedData => {
-        console.log('Trip added:', addedData);
-        // Fetch the latest trip data or update the DOM as needed
-        // Example: fetchAllTheData().then(updatedData => { /* Update DOM here */ });
-        return addedData; // You can return the added trip data if needed
+        
+        return addedData; 
     })
     .catch(error => {
         alert(error.message);
