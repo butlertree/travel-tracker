@@ -139,20 +139,20 @@ const travelers = [
     },
     {
     "id": 4,
-    "userID": 43,
+    "userID": 4,
     "destinationID": 14,
     "travelers": 2,
-    "date": "2022/02/25",
+    "date": "2025/02/25",
     "duration": 10,
     "status": "approved",
     "suggestedActivities": []
     },
     {
     "id": 5,
-    "userID": 42,
+    "userID": 6,
     "destinationID": 29,
     "travelers": 3,
-    "date": "2022/04/30",
+    "date": "2024/04/30",
     "duration": 18,
     "status": "approved",
     "suggestedActivities": []

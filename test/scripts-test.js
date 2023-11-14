@@ -87,7 +87,7 @@ describe('getImageURLsOfPastTrips', function () {
   });
 
   it('should return an empty array when currentTravelerData is not valid or has no trips', function () {
-    // empty 
+   
     const currentTravelerData = null; 
     
     const result = getImageURLsOfPastTrips(currentTravelerData);
@@ -151,25 +151,20 @@ describe('getImageURLsOfPendingTrips', function () {
 
 describe('getImageURLsOfFutureTrips', function () {
   it('should return an array of image URLs and destinations for future trips when currentTravelerData is valid with future trips', function () {
-    // Replace with your test data setup
-    const travelerNumber = 1;
+  
+    const travelerNumber = 4;
     const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
 
     const result = getImageURLsOfFutureTrips(currentTravelerData);
 
-    // result is an array
+    //  an array
     expect(result).to.be.an('array');
 
-    // Check if the result contains the expected image URLs and destinations
-    // Replace with the expected image URLs and destinations based on your test data
+    
     const expected = [
       {
-        image: 'URL1', // Replace with an actual image URL
-        destination: 'Destination1', // Replace with an actual destination name
-      },
-      {
-        image: 'URL2', // Replace with an actual image URL
-        destination: 'Destination2', // Replace with an actual destination name
+        image: "https://images.unsplash.com/photo-1517821362941-f7f753200fef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1952&q=80",
+        destination: "Marrakesh, Morocco"
       },
     ];
 
@@ -177,23 +172,23 @@ describe('getImageURLsOfFutureTrips', function () {
   });
 
   it('should return an empty array when currentTravelerData has no future trips', function () {
-    // Replace with your test data setup where currentTravelerData has no future trips
-    const travelerNumber = 2;
+    
+    const travelerNumber = 5;
     const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
 
     const result = getImageURLsOfFutureTrips(currentTravelerData);
 
-    // result should be an empty array
+    // empty array
     expect(result).to.be.an('array').that.is.empty;
   });
 
   it('should return an empty array when currentTravelerData is not valid or has no trips', function () {
-    // Replace with your test data setup where currentTravelerData is not valid or has no trips
-    const currentTravelerData = null; // Example: When currentTravelerData is not valid
+
+    const currentTravelerData = null; 
 
     const result = getImageURLsOfFutureTrips(currentTravelerData);
 
-    // result should be an empty array
+    // empty array
     expect(result).to.be.an('array').that.is.empty;
   });
 });
