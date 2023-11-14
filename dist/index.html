@@ -29,82 +29,76 @@
     <!-- Dashboard Section -->
     <main id="dashboard">
         
-            <header>
-                <!-- Header Top Content: Trip Planner Form & Welcome Message -->
-                <div class="header-top-content">
-                    <section id="trip-planner-form">
-                      
-                        <div class="form-group">
-                            <label for="start-date">Start Date:</label>
-                            <input type="date" id="start-date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="duration">Duration (days):</label>
-                            <input type="number" id="duration" placeholder="Duration" required min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="travelers">Number of Travelers:</label>
-                            <input type="number" id="travelers" placeholder="Travelers" required min="0">
-                        </div>
-                        <div class="form-group">
-                            <p id="estimated-cost">Estimated Trip Cost: <span id="trip-cost">0</span></p>
-                        </div>
-                        <div class="button-group">
-                            <button type="button" class="dashboard-button" id="cost-button">Cost</button>
-                            <button type="submitTrip" class="dashboard-button" id="submit-trip">Submit To Agent</button>
-                        </div>
-                     
-                    </section>
-
-                    <!-- Choose A Destination Header -->
-                    <section id="destination-header">
-                      <h3 tabindex="0">Select A Date, Duration, Travelers and Destination</h3>
-                    </section>
-                </div>
-                
-                <section class="header-content">
-                  <!-- Display the name of the traveler -->
-                  <h1 tabindex="0">Welcome,</h1>
-                  <h2 tabindex="0"><span id="traveler"></span></h2>
-                  <!-- Display the total amount spent -->
-                  <p id="total-cost" tabindex="0">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
+        <header>
+            <!-- Trip Planner Form & Welcome Message -->
+            <div class="header-top-content">
+                <section id="trip-planner-form">
+                    <div class="form-group">
+                        <label for="start-date">Start Date:</label>
+                        <input type="date" id="start-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (days):</label>
+                        <input type="number" id="duration" placeholder="Duration" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers:</label>
+                        <input type="number" id="travelers" placeholder="Travelers" required min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="destination-dropdown"><strong>Destinations</strong></label>
+                        <select id="destination-dropdown" class="destination-dropdown">
+                            <!-- Options for locations will be added here dynamically -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p id="estimated-cost">Estimated Trip Cost: <span id="trip-cost">0</span></p>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="dashboard-button" id="cost-button">Cost</button>
+                        <button type="submitTrip" class="dashboard-button" id="submit-trip">Submit To Agent</button>
+                    </div>
                 </section>
-                
-            </header>
 
+                <!-- Choose A Destination -->
+                <section id="destination-header">
+                    <h3 tabindex="0">Select A Date, Duration, Travelers, and Destination</h3>
+                </section>
+            </div>
             
-            </section> 
-            <!-- Dropdown Menu for Locations -->
-                <select id="destination-dropdown" class="destination-dropdown">
-            <!-- Options for locations will be added here dynamically -->
-            </select>
-
-            <!-- Trip Columns Section -->
-            <section class="trip-columns">
-                <!-- Pending Trips Column -->
-                <div class="trip-column">
-                    <h2>Pending Trips</h2>
-                    <section id="pending-trips" class="trip-images">
-                        <!-- Pending trips here -->
-                    </section>
-                </div>
-
-                <!-- Upcoming Trips Column -->
-                <div class="trip-column">
-                    <h2>Upcoming Trips</h2>
-                    <section id="upcoming-trips" class="trip-images">
-                        <!-- Upcoming trips here -->
-                    </section>
-                </div>
-
-                <!-- Past Trips Column -->
-                <div class="trip-column">
-                    <h2>Past Trips</h2>
-                    <section id="past-trips" class="trip-images">
-                        <!-- Past trips here -->
-                    </section>
-                </div>
+            <section class="header-content">
+                <!-- Display traveler -->
+                <h1 tabindex="0">Welcome,</h1>
+                <h2 tabindex="0"><span id="traveler"></span></h2>
+                <!-- Display total amount spent -->
+                <p id="total-cost" tabindex="0">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
             </section>
+            
+        </header>
+
+        <!-- Trip Columns -->
+        <section class="trip-columns">
+            <!-- Pending Trips -->
+            <div class="trip-column">
+                <h2>Pending Trips</h2>
+                <section id="pending-trips" class="trip-images">
+                </section>
+            </div>
+
+            <!-- Upcoming Trips -->
+            <div class="trip-column">
+                <h2>Upcoming Trips</h2>
+                <section id="upcoming-trips" class="trip-images">
+                </section>
+            </div>
+
+            <!-- Past Trips -->
+            <div class="trip-column">
+                <h2>Past Trips</h2>
+                <section id="past-trips" class="trip-images">
+                </section>
+            </div>
+        </section>
     </main>
 
     <script src="bundle.js"></script>
