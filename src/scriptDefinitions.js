@@ -1,7 +1,7 @@
-// JS FUNCTIONS GO HERE
 
 
-  // Function to get user data and trips
+
+  // MAKE THE TRAVELER
   function addDataToCurrentTraveler(travelerNumber, travelersData, tripsData, tripDestinations) {
     // Find the traveler in travelersData whose id matches travelerNumber
     const currentTraveler = travelersData.find((traveler) => traveler.id === travelerNumber);
@@ -35,7 +35,6 @@
  
 
   ///////////////PENDING trips to the DOM///////////////////
-
 function getImageURLsOfPendingTrips(currentTravelerData) {
     // Check if currentTravelerData is valid and has trips
     if (currentTravelerData && currentTravelerData.trips) {

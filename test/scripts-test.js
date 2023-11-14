@@ -1,7 +1,199 @@
 import { expect } from 'chai';
 
 //FUNCTIONS FROM THE SCRIPT DEFINITIONS FILE
-const { generateRandomUserID, findUserByEmail, addDataToCurrentUser, findStepGoalAverage, getHydrationFor7Days, calculateTotalHydration, findDistanceTraveled, ouncesPerDay, calculateAverageHoursSlept, calculateAverageSleepQuality, hoursSleptGivenDate, sleepQualityGivenDate, getSleepFor7Days, getSleepQualityFor7Days, checkStepGoal, minutesActiveGivenDate, checkStepGoal7Days, numberOfStepsGivenDate, findBottomDrinkers, findBottomSleepers, findBottomStepTakers } = require('../src/scriptDefinitions');
+const { 
+    addDataToCurrentTraveler,
+    getImageURLsOfPendingTrips,
+    getImageURLsOfPastTrips,
+    getImageURLsOfFutureTrips,
+	calculateTotalSpentOnTrips,
+	calculateTripCost
+    } = require('../src/scriptDefinitions');
 
 //ACCESS TO THE TEST DATA
-const { users, hydrationData, activityData, sleepData } = require('../src/data/testData');
+const { 
+    travelers,
+    trips,
+    destinations
+    } = require('../src/data/testData');
+
+
+/////////TESTS TO CREATE THE TRAVELER/////////
+    describe('addDataToCurrentTraveler', function () {
+      it('should return null if travelerNumber is not found in travelersData', function () {
+        const result = addDataToCurrentTraveler(999, travelers, trips, destinations);
+        expect(result).to.be.null;
+      });
+    
+      it('should return the complete current traveler object when travelerNumber is found', function () {
+        const travelerNumber = 1; 
+        const result = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+    
+        const expectedTraveler = travelers.find((traveler) => traveler.id === travelerNumber);
+    
+        const expectedTrips = trips.filter((trip) => trip.userID === travelerNumber);
+    
+        const expectedDestinations = expectedTrips.map((trip) =>
+          destinations.find((destination) => destination.id === trip.destinationID)
+        );
+    
+        const expected = {
+          traveler: expectedTraveler,
+          trips: expectedTrips,
+          destinations: expectedDestinations,
+        };
+    
+        expect(result).to.deep.equal(expected);
+      });
+    });
+
+///////////TESTS FOR PAST TRIPS///////////////
+
+describe('getImageURLsOfPastTrips', function () {
+  it('should return an array of image URLs and destinations for past trips when currentTravelerData is valid with past trips', function () {
+
+    const travelerNumber = 1;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfPastTrips(currentTravelerData);
+
+  
+    expect(result).to.be.an('array');
+
+    
+    const expected = [
+      {
+        image: "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+        destination: "Lima, Peru"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+        destination: "Stockholm, Sweden"
+      },
+    ];
+
+    expect(result).to.deep.equal(expected);
+  });
+
+  it('should return an empty array when currentTravelerData has no past trips', function () {
+    // no past trips 
+    const travelerNumber = 2;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfPastTrips(currentTravelerData);
+
+    // empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  it('should return an empty array when currentTravelerData is not valid or has no trips', function () {
+    // empty 
+    const currentTravelerData = null; 
+    
+    const result = getImageURLsOfPastTrips(currentTravelerData);
+
+    // empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+});
+
+
+//////PENDING TRIPS////////////////
+
+describe('getImageURLsOfPendingTrips', function () {
+  it('should return an array of image URLs and destinations for pending trips when currentTravelerData is valid with pending trips', function () {
+
+    const travelerNumber = 3;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfPendingTrips(currentTravelerData);
+
+    // an array
+    expect(result).to.be.an('array');
+
+   
+   
+    const expected = [
+      {
+        image:  "https://images.unsplash.com/photo-1524396309943-e03f5249f002?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1567&q=80",
+        destination: "Paris, France"
+      },
+    ];
+
+    expect(result).to.deep.equal(expected);
+  });
+
+  it('should return an empty array when currentTravelerData has no pending trips', function () {
+    
+    const travelerNumber = 2;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfPendingTrips(currentTravelerData);
+
+    // empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  it('should return an empty array when currentTravelerData is not valid or has no trips', function () {
+    
+    const currentTravelerData = null; 
+
+    const result = getImageURLsOfPendingTrips(currentTravelerData);
+
+    // empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+});
+
+
+
+/////////FUTURE TRIPS////////////////////////
+
+describe('getImageURLsOfFutureTrips', function () {
+  it('should return an array of image URLs and destinations for future trips when currentTravelerData is valid with future trips', function () {
+    // Replace with your test data setup
+    const travelerNumber = 1;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfFutureTrips(currentTravelerData);
+
+    // result is an array
+    expect(result).to.be.an('array');
+
+    // Check if the result contains the expected image URLs and destinations
+    // Replace with the expected image URLs and destinations based on your test data
+    const expected = [
+      {
+        image: 'URL1', // Replace with an actual image URL
+        destination: 'Destination1', // Replace with an actual destination name
+      },
+      {
+        image: 'URL2', // Replace with an actual image URL
+        destination: 'Destination2', // Replace with an actual destination name
+      },
+    ];
+
+    expect(result).to.deep.equal(expected);
+  });
+
+  it('should return an empty array when currentTravelerData has no future trips', function () {
+    // Replace with your test data setup where currentTravelerData has no future trips
+    const travelerNumber = 2;
+    const currentTravelerData = addDataToCurrentTraveler(travelerNumber, travelers, trips, destinations);
+
+    const result = getImageURLsOfFutureTrips(currentTravelerData);
+
+    // result should be an empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+
+  it('should return an empty array when currentTravelerData is not valid or has no trips', function () {
+    // Replace with your test data setup where currentTravelerData is not valid or has no trips
+    const currentTravelerData = null; // Example: When currentTravelerData is not valid
+
+    const result = getImageURLsOfFutureTrips(currentTravelerData);
+
+    // result should be an empty array
+    expect(result).to.be.an('array').that.is.empty;
+  });
+});
