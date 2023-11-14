@@ -195,8 +195,6 @@ function calculateTripCost(date,duration, travelers, selectedDestination) {
 }
 
 
-
-
 // EXPORT EVERYTHING LIKE THIS
 module.exports = {
     addDataToCurrentTraveler,

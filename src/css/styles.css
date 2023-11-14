@@ -211,8 +211,6 @@ header {
 }
 
 
-
-
 /* Style required fields in their valid state */
 .form-group input:valid {
   border-color: green;

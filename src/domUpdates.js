@@ -20,7 +20,8 @@ const submitTripButton = document.querySelector('#submit-trip')
 const tripSelectionIndex = document.querySelector('#destination-dropdown')
 const viewTripCost = document.querySelector('#trip-cost')
 
-const validationMessages = document.querySelector('#validation-messages');
+
+
 
 
 
@@ -180,7 +181,7 @@ const updateDestinationDropdown = (destinationData) => {
 
 ///EXPORTS GO HERE LIKE THIS TEMPLATE
 export {
-    validationMessages,
+   
     tripSelectionIndex,
     submitTripButton,
     calculateCost,
