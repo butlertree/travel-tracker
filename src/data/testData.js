@@ -154,7 +154,7 @@ const travelers = [
     "travelers": 3,
     "date": "2024/04/30",
     "duration": 18,
-    "status": "approved",
+    "status": "pending",
     "suggestedActivities": []
     },
     {
@@ -313,7 +313,7 @@ const travelers = [
     {
     "id": 49,
     "destination": "Lima, Peru",
-    "estimatedLodgingCostPerDay": 70,
+    "estimatedLodgingCostPerDay": 75,
     "estimatedFlightCostPerPerson": 400,
     "image": "https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
     "alt": "overview of city buildings with a clear sky"
