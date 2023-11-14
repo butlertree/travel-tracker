@@ -1,7 +1,5 @@
 
-
-
-  // MAKE THE TRAVELER
+  //// MAKE THE TRAVELER//////
   function addDataToCurrentTraveler(travelerNumber, travelersData, tripsData, tripDestinations) {
     // Find traveler
     const currentTraveler = travelersData.find((traveler) => traveler.id === travelerNumber);
@@ -33,7 +31,7 @@
   }
  
 
-  ///////////////PENDING trips to the DOM///////////////////
+  ///////////////PENDING TRIPS///////////////////
 function getImageURLsOfPendingTrips(currentTravelerData) {
     // If valid
     if (currentTravelerData && currentTravelerData.trips) {
@@ -60,7 +58,7 @@ function getImageURLsOfPendingTrips(currentTravelerData) {
   }
   
   
- ///////////////PAST trips to the DOM///////////////////
+ ///////////////PAST TRIPS ///////////////////
 function getImageURLsOfPastTrips(currentTravelerData) {
     // If valid
     if (currentTravelerData && currentTravelerData.trips) {
@@ -95,7 +93,7 @@ function getImageURLsOfPastTrips(currentTravelerData) {
   }
   
 
-//  ///////////////FUTURE trips to the DOM///////////////////
+  ///////////////FUTURE TRIPS ///////////////////
  
 function getImageURLsOfFutureTrips(currentTravelerData) {
     // If valid
@@ -156,19 +154,12 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
 				const flightCost = trip.travelers * destination.estimatedFlightCostPerPerson;
 				const lodgingCost = trip.duration * destination.estimatedLodgingCostPerDay;
 				const tripTotalCost = flightCost + lodgingCost;
-	
-				console.log('Trip:', trip);
-				console.log('Flight Cost:', flightCost);
-				console.log('Lodging Cost:', lodgingCost);
-				console.log('Trip Total Cost:', tripTotalCost);
-	
+
 				return sum + tripTotalCost;
 			}
 	
 			return sum;
 		}, 0);
-	
-		console.log('Total Cost:', totalCost);
 	
 		// agent fee (10%)
 		const totalSpentWithFee = totalCost * 1.1;
@@ -180,7 +171,7 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
 
 
 
-// CALCULATE SINGLE TRIP COST
+///// CALCULATE SINGLE TRIP COST////////
 
 function calculateTripCost(date, duration, travelers, selectedDestination) {
   // If duration or travelers is missing

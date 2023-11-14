@@ -1,5 +1,3 @@
-///Test data goes here - use this template to export
-
 
 const travelers = [
     {
@@ -103,8 +101,6 @@ const travelers = [
     "travelerType": "thrill-seeker"
     }
 ]   
-
-
 
     const trips = [
     {

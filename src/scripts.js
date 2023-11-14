@@ -49,32 +49,32 @@ import {
     loginButton,
   } from './domUpdates';
 
-// //THIS IS WHERE YOUR CODE RUNS FROM
+///RUN///
 
-// Event listener for the login form submission
+/////// LOGIN/////////////
 loginButton.addEventListener('click', (e) => {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); 
   
-    // Get the values of the username and password fields
+    // USER NAME/PASSWORD
     const username = document.querySelector('#username').value;
     const password = document.querySelector('#password').value;
   
-    // Split the username to separate the 'traveler' part and the number part
+    
     const usernameParts = username.split('traveler');
   
-    // Check if there are two parts (i.e., 'traveler' + number)
+    // TRAVELER + NUMBER
     if (usernameParts.length === 2) {
       const travelerNumber = parseInt(usernameParts[1]);
   
-      // Check if the number is greater than 0 and less than 51 and if the password is 'traveler'
+      
       if (travelerNumber > 0 && travelerNumber < 51 && password === 'traveler') {
-        // Successful login
+        
   
-        // Hide the login section and show the dashboard section
+        // HIDE LOGIN SHOW DASHBOARD
         loginSection.style.display = 'none';
         dashboardSection.style.display = 'block';
   
-        // Fetch all the data and create the currentTraveler object
+        // FETCH ALL DATA
         fetchAllTheData().then(() => {
           currentTravelerData = addDataToCurrentTraveler(
             travelerNumber, // Pass the login ID
@@ -85,31 +85,26 @@ loginButton.addEventListener('click', (e) => {
 
           console.log(allDestinations)
   
-   // Update the user name in the dashboard with the fetched currentTraveler's name
+              //USER NAME
             updateUserName(currentTravelerData.traveler);
 
-            const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
-            console.log(pendingTripImageURLs);
-
-            //DOM with drop down
-            updateDestinationDropdown(allDestinations)
-
-
-                //DOM with pending trips
+            //PENDING TRIPS
+            const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData); 
             updatePendingTrips(pendingTripImageURLs)
 
-            const pastTripImageURLs = getImageURLsOfPastTrips(currentTravelerData);
-                console.log(pastTripImageURLs);
-
-            //  DOM with past trip images
+            //PAST TRIPS
+            const pastTripImageURLs = getImageURLsOfPastTrips(currentTravelerData);      
             updatePastTrips(pastTripImageURLs);
 
-                     // DOM with future trips
+            //FUTURE TRIPS
             const futureTripImageURLs = getImageURLsOfFutureTrips(currentTravelerData);
-                        //DOM with future trip images
-                        updateFutureTrips(futureTripImageURLs);
+            updateFutureTrips(futureTripImageURLs);
 
-            //             //DOM with total amount spent 4 years
+
+            //DROP DOWN
+            updateDestinationDropdown(allDestinations)
+
+            //TOTAL SPENT 4 YEARS
             const totalSpent = calculateTotalSpentOnTrips(currentTravelerData);
             console.log(totalSpent)
             updateTotalAmountSpent(totalSpent)
@@ -127,29 +122,29 @@ loginButton.addEventListener('click', (e) => {
   
 
 
-// CALCULATING SINGLE TRIP COST
+/// CALCULATING SINGLE TRIP COST///
 calculateCost.addEventListener('click', () => {
-  // Get the values from your DOM elements
+ 
   const duration = parseInt(durationInput.value);
   const travelers = parseInt(travelersInput.value);
   const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
 
-  // Retrieve the selected destination data based on the index
+  // DESTINATION INDEX
   const selectedDestination = allDestinations[selectedDestinationIndex];
 
-  // Check if the input fields are empty or invalid
+  // VALID INPUT
   if (isNaN(duration) || isNaN(travelers) || isNaN(selectedDestinationIndex)) {
     // Display an error message
     alert('Please fill in all the required fields with valid values.');
-    return; // Exit the function
+    return; 
   }
 
-  // Calculate the trip cost using the imported function
+  // TRIP COST
   const totalCost = calculateTripCost(dateInput, duration, travelers, selectedDestination);
 
   console.log('Total Trip Cost:', totalCost);
 
-  // Update the cost on the DOM
+  // DOM UPDATE
   updateCostOfSingleTrip(totalCost);
 });
 
@@ -158,75 +153,79 @@ calculateCost.addEventListener('click', () => {
 
 /////ADDING PENDING TRIPS//////////////
 
-// Event listener for the submit trip button
 submitTripButton.addEventListener('click', () => {
-  // Get the values from your DOM elements
-  const dateInputValue = dateInput.value; // You may need to parse/format this value as needed
+  
+  const dateInputValue = dateInput.value; 
   const duration = parseInt(durationInput.value);
   const travelers = parseInt(travelersInput.value);
   const selectedDestinationIndex = parseInt(tripSelectionIndex.value);
 
-  // Check if any of the required fields are empty or invalid
+  // IF VALID
   if (
-    dateInputValue.trim() === '' ||
+    dateInputValue === '' ||
     isNaN(duration) ||
     isNaN(travelers) ||
     isNaN(selectedDestinationIndex)
   ) {
-    // Display an error message
+   
     alert('Please fill in all the required fields with valid values.');
-    return; // Exit the function
+    return; 
   }
 
-  // Calculate the new trip's id based on the length of the allTrips array + 1
+  const tripDate = new Date(dateInputValue);
+
+  const currentDate = new Date();
+
+  if (tripDate <= currentDate) {
+    alert('Trip date must be greater than the current date.');
+    return;
+  }
+
+  // ALL TRIPS + 1
   const newTripId = allTrips.length + 1;
 
-  // Parse the date using JavaScript Date and then format it as "YYYY/MM/DD"
+  // FORMATE DATE
   const date = new Date(dateInputValue);
   const formattedDate = `${date.getFullYear()}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getDate().toString().padStart(2, '0')}`;
 
-  // Create the new trip object with a "pending" status
+  // NEW TRIP OBJECT
   const newTrip = {
-    id: newTripId, // Assign the calculated new id
-    userID: currentTravelerData.traveler.id, // Assuming you have access to the current traveler's ID
-    destinationID: allDestinations[selectedDestinationIndex].id, // Get the destination ID from the selected index
+    id: newTripId, 
+    userID: currentTravelerData.traveler.id, 
+    destinationID: allDestinations[selectedDestinationIndex].id, 
     travelers: travelers,
     date: formattedDate,
     duration: duration,
-    status: "pending", // Set the status to "pending"
+    status: "pending", 
     suggestedActivities: []
   };
 
-  // Use the postTripData function to post the new trip to the server
+  // POST
   postTripData(newTrip)
-    .then(addedTripData => {
-      // Handle the response, e.g., update the DOM with addedTripData if needed
-      console.log('New Trip Object:', addedTripData);
-
-      // Fetch the updated data
+    .then(() => {
+      
+      // GET UPDATED 
       fetchAllTheData()
         .then(() => {
           currentTravelerData = addDataToCurrentTraveler(
-            currentTravelerData.traveler.id, // Pass the correct traveler ID
-            allTravelers, // Pass the variable directly
-            allTrips, // Pass the variable directly
-            allDestinations // Pass the variable directly
+            currentTravelerData.traveler.id, 
+            allTravelers, 
+            allTrips, 
+            allDestinations 
           );
 
-          // After successfully adding the new trip, you can update the pending trips in the DOM
-          // Call the updatePendingTrips function with the updated currentTravelerData
+          //UPDATE DOM
           const pendingTripImageURLs = getImageURLsOfPendingTrips(currentTravelerData);
           updatePendingTrips(pendingTripImageURLs);
 
-          // Additional DOM updates can be done here
         })
         .catch(error => {
-          // Handle errors related to fetching data
+       
           console.error('Fetch Data Error:', error);
         });
     })
     .catch(error => {
-      // Handle errors related to the POST request
+     
       console.error('POST Error:', error);
     });
 });
