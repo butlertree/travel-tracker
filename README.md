@@ -19,7 +19,9 @@ This application helps users manage and track different trips for users and a tr
 6. Use `ctrl + c` to stop the local server from running in your terminal at any time
 
 ### Preview of App:
-![page reload to show functionality](https://www.loom.com/share/f2cffccf4ba640f6a464cab36f872802?sid=34507f00-54b9-4268-b21d-2fa90f6f92a1)
+[Page Functionality](https://www.loom.com/share/f2cffccf4ba640f6a464cab36f872802?sid=1dac8603-0195-491f-b9b8-92ed085d826c)
+
+![Screenshot](<src/images/Screenshot 2023-11-11 at 1.43.50 PM.png>)
 
 ### Context:
 This project was assigned during Week 5 of Module 2 in Turing's Front-End Engineering track. This was a solo project we were given 6 days to complete.  
