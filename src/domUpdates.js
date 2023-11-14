@@ -67,7 +67,8 @@ const updatePendingTrips = (pendingTripData) => {
         // Create an image element for the thumbnail
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
-        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
+        tripThumbnail.tabIndex = 0
   
         // Create a paragraph element for the destination name
         const destinationParagraph = document.createElement('p');
@@ -102,8 +103,9 @@ const updatePastTrips = (pastTripImageData) => {
         // Create an image element for the thumbnail
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
-        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
-  
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
+        tripThumbnail.tabIndex = 0
+
         // Create a paragraph element for the destination name
         const destinationParagraph = document.createElement('p');
         destinationParagraph.textContent = destinationName;
@@ -140,7 +142,8 @@ const updatePastTrips = (pastTripImageData) => {
         // Create an image element for the thumbnail
         const tripThumbnail = document.createElement('img');
         tripThumbnail.src = imageUrl; // Set the image URL
-        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text for the image with destination name for better accessibility
+        tripThumbnail.alt = `Thumbnail of ${destinationName}`; // Set alt text with destination name for better accessibility
+        tripThumbnail.tabIndex = 0
   
         // Create a paragraph element for the destination name
         const destinationParagraph = document.createElement('p');
