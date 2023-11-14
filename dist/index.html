@@ -36,15 +36,15 @@
                       
                         <div class="form-group">
                             <label for="start-date">Start Date:</label>
-                            <input type="date" id="start-date" name="start-date" required>
+                            <input type="date" id="start-date" required>
                         </div>
                         <div class="form-group">
                             <label for="duration">Duration (days):</label>
-                            <input type="number" id="duration" name="duration" placeholder="Duration" required min="0">
+                            <input type="number" id="duration" placeholder="Duration" required min="0">
                         </div>
                         <div class="form-group">
                             <label for="travelers">Number of Travelers:</label>
-                            <input type="number" id="travelers" name="travelers" placeholder="Travelers" required min="0">
+                            <input type="number" id="travelers" placeholder="Travelers" required min="0">
                         </div>
                         <div class="form-group">
                             <p id="estimated-cost">Estimated Trip Cost: <span id="trip-cost">0</span></p>
@@ -58,16 +58,16 @@
 
                     <!-- Choose A Destination Header -->
                     <section id="destination-header">
-                      <h3>Select A Date, Duration, Travelers and Destination</h3>
+                      <h3 tabindex="0">Select A Date, Duration, Travelers and Destination</h3>
                     </section>
                 </div>
                 
                 <section class="header-content">
                   <!-- Display the name of the traveler -->
-                  <h1>Welcome,</h1>
-                  <h2><span id="traveler"></span></h2>
+                  <h1 tabindex="0">Welcome,</h1>
+                  <h2 tabindex="0"><span id="traveler"></span></h2>
                   <!-- Display the total amount spent -->
-                  <p id="total-cost">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
+                  <p id="total-cost" tabindex="0">Total Amount Spent Over 4 years: <span id="total-amount">0</span></p>
                 </section>
                 
             </header>
