@@ -144,7 +144,7 @@ function getImageURLsOfFutureTrips(currentTravelerData) {
 			return tripDate >= threeYearsAgo && tripDate <= currentDate && trip.status === 'approved';
 		});
 	
-		console.log('Recent Trips:', recentTrips);
+		
 	
 		// Calculate the total cost spent on trips
 		const totalCost = recentTrips.reduce((sum, trip) => {
