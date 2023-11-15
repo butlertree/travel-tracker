@@ -83,7 +83,6 @@ loginButton.addEventListener('click', (e) => {
             allDestinations // Pass the variable directly
           );
 
-          console.log(allDestinations)
   
               //USER NAME
             updateUserName(currentTravelerData.traveler);
@@ -106,7 +105,7 @@ loginButton.addEventListener('click', (e) => {
 
             //TOTAL SPENT 4 YEARS
             const totalSpent = calculateTotalSpentOnTrips(currentTravelerData);
-            console.log(totalSpent)
+            
             updateTotalAmountSpent(totalSpent)
 
         });
@@ -142,7 +141,7 @@ calculateCost.addEventListener('click', () => {
   // TRIP COST
   const totalCost = calculateTripCost(dateInput, duration, travelers, selectedDestination);
 
-  console.log('Total Trip Cost:', totalCost);
+  
 
   // DOM UPDATE
   updateCostOfSingleTrip(totalCost);
