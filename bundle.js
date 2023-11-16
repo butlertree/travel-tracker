@@ -448,9 +448,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "postTripData": () => (/* binding */ postTripData)
 /* harmony export */ });
 /////////////////// Global Variables /////////////////////
-const travelersApi = "http://localhost:3001/api/v1/travelers";  //all travelers
-const tripsApi = "http://localhost:3001/api/v1/trips"; //all trips
-const destinationsApi = "http://localhost:3001/api/v1/destinations"; //all destinations
+const travelersApi = "https://travel-tracker-api-tau.vercel.app/api/v1/travelers";  //all travelers
+const tripsApi = "https://travel-tracker-api-tau.vercel.app/api/v1/trips"; //all trips
+const destinationsApi = "https://travel-tracker-api-tau.vercel.app/api/v1/destinations"; //all destinations
 let allTravelers = null;
 let allTrips = null;
 let allDestinations = null;
