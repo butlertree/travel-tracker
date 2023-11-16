@@ -233,7 +233,8 @@ submitTripButton.addEventListener('click', () => {
 
 
 
-
+//for the package.json
+// "git+https://github.com/turingschool-examples/webpack-starter-kit.git",
 
 
 
